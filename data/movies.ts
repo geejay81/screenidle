@@ -1,7 +1,7 @@
 import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client-config";
 import gameConfig from "./config/game-config";
-
+import { Movie } from "@/types/Movie";
 
 const currentPuzzleId = () => {    
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -24,37 +24,37 @@ const filteredResponseQueryOptions = {
     next: { revalidate: Number(process.env.REVALIDATE_CACHE_SECONDS) }
 }
 
-// export async function getCurrentAlbum() {
-//     const currentPuzzleDate = currentPuzzleId();
+export async function getCurrentMovie() {
+    const currentPuzzleDate = currentPuzzleId();
 
-//     return await getAlbum(currentPuzzleDate);
-// }
+    return await getMovie(currentPuzzleDate);
+}
 
-// export async function getAlbum(gameId: number) {
+export async function getMovie(gameId: number) {
 
-//     const currentPuzzleDate = currentPuzzleId();
+    const currentPuzzleDate = currentPuzzleId();
 
-//     if (gameId > currentPuzzleDate) return null;
+    if (gameId > currentPuzzleDate) return null;
 
-//     const allAlbums = await getAllAlbums();
+    const alMovies = await getAllMovies();
 
-//     const selectedAlbums =  allAlbums.filter((album: Album) => album.gameId == gameId);
+    const selectedMovies =  alMovies.filter((movie: Movie) => movie.gameId == gameId);
 
-//     if (selectedAlbums === null || selectedAlbums.length === 0) return null;
+    if (selectedMovies === null || selectedMovies.length === 0) return null;
 
-//     return selectedAlbums[0];
-// }
+    return selectedMovies[0];
+}
 
-// export async function getHistoricAlbums() {
+export async function getHistoricalMovies() {
     
-//     const currentPuzzleDate = currentPuzzleId();
-//     const allAlbums = await getAllAlbums();
+    const currentPuzzleDate = currentPuzzleId();
+    const allMovies = await getAllMovies();
 
-//     return allAlbums
-//         .filter((album: Album) => (
-//             album.gameId !== null && album.gameId < currentPuzzleDate))
-//         .sort((a: Album, b: Album) => a.gameId - b.gameId);
-// }
+    return allMovies
+        .filter((movie: Movie) => (
+            movie.gameId !== null && movie.gameId < currentPuzzleDate))
+        .sort((a: Movie, b: Movie) => a.gameId - b.gameId);
+}
 
 export async function getAllMovies() {
 
