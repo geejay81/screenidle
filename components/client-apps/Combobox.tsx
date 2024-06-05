@@ -16,11 +16,11 @@ function getOptionFilter(inputValue: string) {
 
 type ComboBoxProps = {
   selectedItem: string,
-  setSelectedItem: any,
+  dispatch: any,
   srcUrl: string
 }
 
-function ComboBox({selectedItem, setSelectedItem, srcUrl}: ComboBoxProps) {
+function ComboBox({selectedItem, dispatch, srcUrl}: ComboBoxProps) {
   const [options, setOptions] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
 
@@ -50,7 +50,7 @@ function ComboBox({selectedItem, setSelectedItem, srcUrl}: ComboBoxProps) {
     },
     selectedItem,
     onSelectedItemChange: ({selectedItem: newSelectedItem}) => {
-      setSelectedItem(newSelectedItem);
+      dispatch({ type: 'SET_SELECTED_ITEM', payload: newSelectedItem });
     },
   })
     return (
@@ -82,7 +82,6 @@ function ComboBox({selectedItem, setSelectedItem, srcUrl}: ComboBoxProps) {
                 {...getItemProps({item, index})}
               >
                 <span>{item}</span>
-                {/* <span className="text-sm text-gray-700">{item.author}</span> */}
               </li>
             ))}
         </ul>
