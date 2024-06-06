@@ -26,8 +26,7 @@ const gameStateReducer = (state: GameState, action: any): GameState => {
         case 'SET_SELECTED_ITEM':
             return { ...state, selectedItem: action.payload }
         case 'SET_NEW_GUESS':
-            console.log(state.selectedItem);
-            const result = state.selectedItem?.length ?? 0 == 0
+            const result = (state.selectedItem!.length ?? 0) == 0
                 ? 'skipped'
                 : state.selectedItem == state.answer ? 'correct' : 'incorrect';
             const latestGuess: Guess = { result, answer: state.selectedItem };
@@ -58,10 +57,7 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
 
     const [state, dispatch] = useReducer(gameStateReducer, initialGameState);
 
-    const handleGuess = () => {
-        console.log('test');
-        dispatch({ type: 'SET_NEW_GUESS' });
-    }
+    const handleGuess = () => dispatch({ type: 'SET_NEW_GUESS' });
 
     const PlayMode = () => (
         <>
@@ -73,11 +69,13 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
                 <button onClick={handleGuess} className="w-full p-2 border border-black mt-2">
                     Guess
                 </button>
-                <ul>
-                    {state.guesses.map((guess: Guess, index: number) => (
-                        <li key={index}>{`${guess.answer} - ${guess.result}`}</li>
-                    ))}
-                </ul>
+                <div className="prose">
+                    <ul>
+                        {state.guesses.map((guess: Guess, index: number) => (
+                            <li key={index}>{`${guess.answer} - ${guess.result}`}</li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </>
     )
