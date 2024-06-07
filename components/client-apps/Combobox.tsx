@@ -2,6 +2,8 @@
 
 import { useCombobox } from "downshift"
 import { useEffect, useState } from "react"
+import { FaCross } from "react-icons/fa"
+import { FaXmark } from "react-icons/fa6"
 
 function getOptionFilter(inputValue: string) {
   const lowerCasedInputValue = inputValue.toLowerCase()
@@ -66,6 +68,14 @@ function ComboBox({selectedItem, dispatch, srcUrl}: ComboBoxProps) {
               className="w-full px-1.5 py-4 border border-black focus:border-2"
               {...getInputProps()}
             />
+            <button
+              aria-label="clear selection"
+              className="p-4 border border-black focus:border-2"
+              type="button"
+              onClick={() => dispatch({ type: 'SET_SELECTED_ITEM', payload: '' })}
+            >
+              <FaXmark />
+            </button>
           </div>
         </div>
         <ul

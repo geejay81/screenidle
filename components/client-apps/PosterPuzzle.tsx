@@ -2,47 +2,15 @@
 
 import { Movie } from "@/types/Movie"
 import PixelatedImage from "./PixelatedImage"
-import { useReducer, useState } from "react"
+import { useReducer } from "react"
 import { Guess } from "@/types/Guess"
 import Combobox from "./Combobox"
+import { GameState } from "@/types/GameState"
+import { gameStateReducer, levels } from "../reducers/game-state-reducer"
+import ScoreBoard from "./ScoreBoard"
 
 type PosterPuzzleProps = {
     movie: Movie
-}
-
-type GameState = {
-    selectedItem: string;
-    guesses: Guess[];
-    gameMode: string;
-    pixelSize: number;
-    answer: string
-}
-
-const levels = [40, 24, 16, 8, 4, 2];
-
-const gameStateReducer = (state: GameState, action: any): GameState => {
-
-    switch (action.type) {
-        case 'SET_SELECTED_ITEM':
-            return { ...state, selectedItem: action.payload }
-        case 'SET_NEW_GUESS':
-            const result = (state.selectedItem!.length ?? 0) == 0
-                ? 'skipped'
-                : state.selectedItem == state.answer ? 'correct' : 'incorrect';
-            const latestGuess: Guess = { result, answer: state.selectedItem };
-            const guesses = [ ...state.guesses , latestGuess ];
-            let gameMode = 'play';
-            if (result == 'correct') {
-                gameMode = 'won';
-            } else if (guesses.length == 6) {
-                gameMode = 'lost';
-            }
-            const pixelSize = gameMode == 'play'
-                ? levels[guesses.length - 1]
-                : state.pixelSize;
-            return { ...state, gameMode, pixelSize, guesses }
-        default: return state;
-    }
 }
 
 export default function PosterPuzzle({movie}: PosterPuzzleProps) {
@@ -63,18 +31,24 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
         <>
             <div>
                 <PixelatedImage imageUrl={movie.poster} pixelSize={state.pixelSize} />
+                <ScoreBoard guesses={state.guesses} />
                 <div className="w-full">
-                    <Combobox selectedItem={state.selectedItem} dispatch={dispatch} srcUrl="/api/movies" />
+                    <Combobox 
+                        selectedItem={state.selectedItem} 
+                        dispatch={dispatch} 
+                        srcUrl="/api/movies" />
                 </div>
-                <button onClick={handleGuess} className="w-full p-2 border border-black mt-2">
+                <button 
+                    onClick={handleGuess} 
+                    className="w-full p-2 bg-slate-700 text-white border border-black mt-2">
                     Guess
                 </button>
                 <div className="prose">
-                    <ul>
+                    <ol className="list-decimal">
                         {state.guesses.map((guess: Guess, index: number) => (
                             <li key={index}>{`${guess.answer} - ${guess.result}`}</li>
                         ))}
-                    </ul>
+                    </ol>
                 </div>
             </div>
         </>
