@@ -65,12 +65,12 @@ function ComboBox({selectedItem, dispatch, srcUrl}: ComboBoxProps) {
             <input
               id="search-field"
               placeholder="Search movies"
-              className="w-full px-1.5 py-4 border border-black focus:border-2"
+              className="w-full px-1.5 py-4 border border-black focus:border-2 text-black"
               {...getInputProps()}
             />
             <button
               aria-label="clear selection"
-              className="p-4 border border-black focus:border-2"
+              className="p-4 border border-black focus:border-2 text-black"
               type="button"
               onClick={() => dispatch({ type: 'SET_SELECTED_ITEM', payload: '' })}
             >
@@ -87,7 +87,7 @@ function ComboBox({selectedItem, dispatch, srcUrl}: ComboBoxProps) {
           {isOpen &&
             items.map((item: any, index) => (
               <li className={
-                `py-2 px-3 shadow-sm flex flex-col${highlightedIndex === index ? ' bg-slate-200' : ''}`}
+                `py-2 px-3 shadow-sm text-black flex flex-col${highlightedIndex === index ? ' bg-slate-200' : ''}`}
                 key={index}
                 {...getItemProps({item, index})}
               >

@@ -10,11 +10,11 @@ type ScoreBoardProps = {
 const guessIcon = (guess: Guess, index: number) => {
     switch (guess.result) {
         case "skipped":
-            return <FaSquareXmark key={index} className="text-slate-500 text-xl border border-white" />
+            return <FaSquareXmark key={index} className="text-slate-200 text-xl" />
         case "correct":
-            return <FaSquareCheck key={index} className="text-green-500 text-xl border border-white"  />
+            return <FaSquareCheck key={index} className="text-screenidle-success text-xl"  />
         case "incorrect":
-            return <FaSquareXmark key={index} className="text-red-500 text-xl border border-white"  />
+            return <FaSquareXmark key={index} className="text-screenidle-danger text-xl"  />
     }
 }
 

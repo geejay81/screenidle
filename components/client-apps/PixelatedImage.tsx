@@ -42,8 +42,6 @@ const PixelatedImage = ({ imageUrl, pixelSize }: PixelatedImageProps) => {
       imgPixelated.height = dimension;
 
       context!.drawImage(imgPixelated, 0, 0);
-
-      canvas!.style.border = '1px solid black';
     }
 
     imgOriginal.src = imageUrl;

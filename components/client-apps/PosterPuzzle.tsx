@@ -8,6 +8,7 @@ import { GameState } from "@/types/GameState"
 import { gameStateReducer, levels } from "../reducers/game-state-reducer"
 import ScoreBoard from "./ScoreBoard"
 import PreviousAnswers from "./PreviousAnswers"
+import { buttons } from "@/ui/fonts"
 
 type PosterPuzzleProps = {
     movie: Movie
@@ -40,7 +41,7 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
                 </div>
                 <button 
                     onClick={handleGuess} 
-                    className="w-full p-4 bg-slate-700 text-white border border-black mt-2">
+                    className={`w-full p-4 bg-screenidle-success text-screenidle-link font-bold border border-black mt-2 ${buttons.className}`}>
                     Guess
                 </button>
                 <PreviousAnswers guesses={state.guesses} />
@@ -48,9 +49,33 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
         </>
     )
 
+    const WonMode = () => (
+        <>
+            <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4">
+                <h2 className="font-bold text-lg">You won!</h2>
+                <p>You knew that the answer was {state.answer}.</p>
+                <div className="w-full p-4 bg-screenidle-link rounded-lg">
+                    <ScoreBoard guesses={state.guesses} />
+                </div>
+            </div>
+        </>
+    )
+
+    const LostMode = () => (
+        <>
+            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4">
+                <h2 className="font-bold text-lg">You lost!</h2>
+                <p>The answer that you were looking for was {state.answer}.</p>
+                <div className="w-full p-4 bg-screenidle-link rounded-lg">
+                    <ScoreBoard guesses={state.guesses} />
+                </div>
+            </div>
+        </>
+    )
+
     switch (state.gameMode) {
         case 'play': return <PlayMode />
-        case 'won': return <h1>You won!</h1>
-        case 'lost': return <h1>You lost!</h1>
+        case 'won': return <WonMode />
+        case 'lost': return <LostMode />
     }
 }
