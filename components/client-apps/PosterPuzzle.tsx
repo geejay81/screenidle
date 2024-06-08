@@ -3,11 +3,11 @@
 import { Movie } from "@/types/Movie"
 import PixelatedImage from "./PixelatedImage"
 import { useReducer } from "react"
-import { Guess } from "@/types/Guess"
 import Combobox from "./Combobox"
 import { GameState } from "@/types/GameState"
 import { gameStateReducer, levels } from "../reducers/game-state-reducer"
 import ScoreBoard from "./ScoreBoard"
+import PreviousAnswers from "./PreviousAnswers"
 
 type PosterPuzzleProps = {
     movie: Movie
@@ -40,16 +40,10 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
                 </div>
                 <button 
                     onClick={handleGuess} 
-                    className="w-full p-2 bg-slate-700 text-white border border-black mt-2">
+                    className="w-full p-4 bg-slate-700 text-white border border-black mt-2">
                     Guess
                 </button>
-                <div className="prose">
-                    <ol className="list-decimal">
-                        {state.guesses.map((guess: Guess, index: number) => (
-                            <li key={index}>{`${guess.answer} - ${guess.result}`}</li>
-                        ))}
-                    </ol>
-                </div>
+                <PreviousAnswers guesses={state.guesses} />
             </div>
         </>
     )
