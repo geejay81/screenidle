@@ -8,7 +8,7 @@ import { GameState } from "@/types/GameState"
 import { gameStateReducer, levels } from "../reducers/game-state-reducer"
 import ScoreBoard from "./ScoreBoard"
 import PreviousAnswers from "./PreviousAnswers"
-import { buttons } from "@/ui/fonts"
+import { buttons, headings } from "@/ui/fonts"
 
 type PosterPuzzleProps = {
     movie: Movie
@@ -30,7 +30,7 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
 
     const PlayMode = () => (
         <>
-            <div>
+            <div className="space-y-4">
                 <PixelatedImage imageUrl={movie.poster} pixelSize={state.pixelSize} />
                 <ScoreBoard guesses={state.guesses} />
                 <div className="w-full">
@@ -51,24 +51,26 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
 
     const WonMode = () => (
         <>
-            <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4">
-                <h2 className="font-bold text-lg">You won!</h2>
+            <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
+                <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
                 <p>You knew that the answer was {state.answer}.</p>
                 <div className="w-full p-4 bg-screenidle-link rounded-lg">
                     <ScoreBoard guesses={state.guesses} />
                 </div>
+                <PreviousAnswers guesses={state.guesses} />
             </div>
         </>
     )
 
     const LostMode = () => (
         <>
-            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4">
-                <h2 className="font-bold text-lg">You lost!</h2>
+            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link rounded-lg">
+                <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
                 <p>The answer that you were looking for was {state.answer}.</p>
                 <div className="w-full p-4 bg-screenidle-link rounded-lg">
                     <ScoreBoard guesses={state.guesses} />
                 </div>
+                <PreviousAnswers guesses={state.guesses} />
             </div>
         </>
     )
