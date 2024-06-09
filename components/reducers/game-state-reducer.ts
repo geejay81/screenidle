@@ -23,7 +23,7 @@ export const gameStateReducer = (state: GameState, action: any): GameState => {
                 gameMode = 'lost';
             }
             const pixelSize = gameMode == 'play'
-                ? levels[guesses.length - 1]
+                ? levels[guesses.length]
                 : state.pixelSize;
             if (gameMode == "play") {
                 document.getElementById('search-field')?.focus();
