@@ -19,7 +19,7 @@ export const gameStateReducer = (state: GameState, action: any): GameState => {
             let gameMode = 'play';
             if (result == 'correct') {
                 gameMode = 'won';
-            } else if (guesses.length == 6) {
+            } else if (guesses.length == levels.length) {
                 gameMode = 'lost';
             }
             const pixelSize = gameMode == 'play'
