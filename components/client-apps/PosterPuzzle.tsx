@@ -53,7 +53,7 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
         <>
             <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
                 <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
-                <p>You knew that the answer was {state.answer}.</p>
+                <p>You knew that the answer was <b>{movie.title}</b>.</p>
                 <div className="w-full p-4 bg-screenidle-link rounded-lg">
                     <ScoreBoard guesses={state.guesses} />
                 </div>
@@ -64,9 +64,9 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
 
     const LostMode = () => (
         <>
-            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link rounded-lg">
+            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-xl">
                 <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
-                <p>The answer that you were looking for was {state.answer}.</p>
+                <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
                 <div className="w-full p-4 bg-screenidle-link rounded-lg">
                     <ScoreBoard guesses={state.guesses} />
                 </div>
