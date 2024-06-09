@@ -3,7 +3,7 @@
 import { GameState } from "@/types/GameState";
 import { Guess } from "@/types/Guess";
 
-export const levels = [40, 24, 16, 8, 4, 2];
+export const levels = [40, 30, 24, 16, 8, 4];
 
 export const gameStateReducer = (state: GameState, action: any): GameState => {
 
