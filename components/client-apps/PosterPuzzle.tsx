@@ -66,9 +66,15 @@ export default function PosterPuzzle({movie}: PosterPuzzleProps) {
         </>
     )
 
+    const LoadingMode = () => (
+        <p>Loading puzzle ...</p>
+    )
+
     switch (state.gameMode) {
+        case 'loading': return <LoadingMode />
         case 'play': return <PlayMode />
         case 'won': return <WonMode />
         case 'lost': return <LostMode />
+        default: return <LoadingMode />
     }
 }

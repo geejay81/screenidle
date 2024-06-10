@@ -15,11 +15,19 @@ export const gameStateInitialiser = (movie: Movie): GameState => {
         ? savedGameState.guesses
         : [];
 
+    let gameMode = 'play';
+
+    if (guesses.map((guess: Guess) => guess.result).includes('correct')) {
+        gameMode = 'won';
+    } else if (guesses.length == levels.length) {
+        gameMode = 'lost';
+    }
+
     return {
         gameId: movie.gameId,
         selectedItem: '',
         guesses: guesses,
-        gameMode: 'play',
+        gameMode: gameMode,
         pixelSize: levels[guesses.length],
         answer: `${movie.title} (${movie.year})`
     };
