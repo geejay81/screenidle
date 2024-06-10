@@ -4,8 +4,7 @@ import { Movie } from "@/types/Movie"
 import PixelatedImage from "./PixelatedImage"
 import { useReducer } from "react"
 import Combobox from "./Combobox"
-import { GameState } from "@/types/GameState"
-import { gameStateReducer, levels } from "../reducers/game-state-reducer"
+import { gameStateInitialiser, gameStateReducer } from "../reducers/game-state-reducer"
 import ScoreBoard from "./ScoreBoard"
 import PreviousAnswers from "./PreviousAnswers"
 import { buttons, headings } from "@/ui/fonts"
@@ -16,17 +15,9 @@ type PosterPuzzleProps = {
 
 export default function PosterPuzzle({movie}: PosterPuzzleProps) {
 
-    const initialGameState: GameState = {
-        selectedItem: '',
-        guesses: [],
-        gameMode: 'play',
-        pixelSize: levels[0],
-        answer: `${movie.title} (${movie.year})`
-    }
+    const [state, dispatch] = useReducer(gameStateReducer, movie, gameStateInitialiser);
 
-    const [state, dispatch] = useReducer(gameStateReducer, initialGameState);
-
-    const handleGuess = () => dispatch({ type: 'SET_NEW_GUESS' });
+    const handleGuess = () => dispatch({ type: 'PLAY_GUESS' });
 
     const PlayMode = () => (
         <>

@@ -2,15 +2,35 @@
 
 import { GameState } from "@/types/GameState";
 import { Guess } from "@/types/Guess";
+import { Movie } from "@/types/Movie";
+import { getGameState, setGameState } from "../client-lib/state-manager";
 
 export const levels = [40, 30, 24, 16, 8, 4];
+
+export const gameStateInitialiser = (movie: Movie): GameState => {
+
+    const savedGameState = getGameState();
+
+    const guesses = (movie.gameId === savedGameState?.puzzleNumber)
+        ? savedGameState.guesses
+        : [];
+
+    return {
+        gameId: movie.gameId,
+        selectedItem: '',
+        guesses: guesses,
+        gameMode: 'play',
+        pixelSize: levels[guesses.length],
+        answer: `${movie.title} (${movie.year})`
+    };
+}
 
 export const gameStateReducer = (state: GameState, action: any): GameState => {
 
     switch (action.type) {
         case 'SET_SELECTED_ITEM':
             return { ...state, selectedItem: action.payload }
-        case 'SET_NEW_GUESS':
+        case 'PLAY_GUESS':
             const result = (state.selectedItem!.length ?? 0) == 0
                 ? 'skipped'
                 : state.selectedItem == state.answer ? 'correct' : 'incorrect';
@@ -28,6 +48,7 @@ export const gameStateReducer = (state: GameState, action: any): GameState => {
             if (gameMode == "play") {
                 document.getElementById('search-field')?.focus();
             }
+            setGameState(state.gameId, guesses);
             return { ...state, gameMode, pixelSize, guesses, selectedItem: '' }
         default: return state;
     }
