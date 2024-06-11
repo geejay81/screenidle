@@ -1,4 +1,3 @@
-import PosterPuzzle from "@/components/client-apps/PosterPuzzle";
 import { logo } from "@/ui/fonts";
 import Link from "next/link";
 import { FaClapperboard } from "react-icons/fa6";
@@ -15,7 +14,6 @@ export default async function Home() {
         <Link href="/posters" className="text-lg bg-screenidle-success text-screenidle-link p-4 rounded-lg">
           Guess Today&apos;s Movie Poster</Link>
       </div>
-      
     </main>
   );
 }
