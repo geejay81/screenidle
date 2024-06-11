@@ -1,28 +1,40 @@
+import Header from "@/components/page/Header";
 import { getHistoricalMovies } from "@/data/movies"
 import { Movie } from "@/types/Movie";
+import { Metadata } from "next";
+import Link from "next/link";
+
+export const revalidate = 600;
+
+export const metadata: Metadata = {
+    title: "Previous movie poster puzzles",
+    description: "Play the whole filmography!"
+}
 
 export default async function PosterHistoryPage() {
 
     const movies = await getHistoricalMovies();
-
-    const HistoryList = () => (
-        <ul>
-            {movies.map((movie: Movie) => (
-                <li key={movie.gameId}>
-                    
-                </li>
-            ))}
-        </ul>
-    )
-
+    const showHistory = movies && movies.length > 0;
 
     return (
-        <>
-            <h1>Previous poster puzzles</h1>
-            {movies && movies.length > 0
-                ? <HistoryList />
-                : <p>There are no previous games to play at the moment. Check back tomorrow.</p>
+        <main className="grow max-w-md p-4 mx-auto">
+            <Header title={'Previous movie poster puzzles'} />
+            {showHistory
+            ?
+                <ul className="list-none m-0">
+                {movies && movies.map((movie: Movie) => (
+                    <li key={movie.gameId} 
+                        className="mr-4 my-2 float-left">
+                        <Link 
+                            href={`/posters/history/${movie.gameId}`}
+                            className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
+                            >{movie.gameId}</Link></li>
+                ))}
+                </ul>
+            :
+                <p>There are no games to play at the moment, but check back tomorrow to play the first.</p>
             }
-        </>
+        </main>
+        
     )
 }

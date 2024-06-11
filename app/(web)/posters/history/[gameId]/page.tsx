@@ -1,4 +1,5 @@
 import PosterPuzzle from "@/components/client-apps/PosterPuzzle";
+import Header from "@/components/page/Header";
 import { getMovie } from "@/data/movies";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -22,7 +23,8 @@ export default async function PostersIdPage({params}: PostersIdPageProps) {
     if (!movie) return notFound();
   
     return (
-      <main className="max-w-md p-4 mx-auto">
+      <main className="grow max-w-md p-4 mx-auto">
+        <Header title={'Guess the previous movie poster'} />
         <PosterPuzzle movie={movie} isDailyGame={false} />
       </main>
     );
