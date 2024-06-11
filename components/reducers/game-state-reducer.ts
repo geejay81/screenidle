@@ -7,11 +7,16 @@ import { getGameState, setGameState } from "../client-lib/state-manager";
 
 export const levels = [40, 30, 24, 16, 8, 4];
 
-export const gameStateInitialiser = (movie: Movie): GameState => {
+type gameStateInitialiserProps = {
+    movie: Movie,
+    isDailyGame: boolean
+}
+
+export const gameStateInitialiser = (inits: gameStateInitialiserProps): GameState => {
 
     const savedGameState = getGameState();
 
-    const guesses = (movie.gameId === savedGameState?.puzzleNumber)
+    const guesses = (inits.isDailyGame && inits.movie.gameId === savedGameState?.puzzleNumber)
         ? savedGameState.guesses
         : [];
 
@@ -24,18 +29,21 @@ export const gameStateInitialiser = (movie: Movie): GameState => {
     }
 
     return {
-        gameId: movie.gameId,
+        gameId: inits.movie.gameId,
+        isDailyGame: inits.isDailyGame,
         selectedItem: '',
         guesses: guesses,
         gameMode: gameMode,
         pixelSize: levels[guesses.length],
-        answer: `${movie.title} (${movie.year})`
+        answer: `${inits.movie.title} (${inits.movie.year})`
     };
 }
 
 export const gameStateReducer = (state: GameState, action: any): GameState => {
 
     switch (action.type) {
+        case 'SET_DAILY_PLAY':
+            return { ...state, isDailyGame: action.payload }
         case 'SET_SELECTED_ITEM':
             return { ...state, selectedItem: action.payload }
         case 'PLAY_GUESS':
@@ -56,7 +64,7 @@ export const gameStateReducer = (state: GameState, action: any): GameState => {
             if (gameMode == "play") {
                 document.getElementById('search-field')?.focus();
             }
-            setGameState(state.gameId, guesses);
+            if (state.isDailyGame) setGameState(state.gameId, guesses);
             return { ...state, gameMode, pixelSize, guesses, selectedItem: '' }
         default: return state;
     }

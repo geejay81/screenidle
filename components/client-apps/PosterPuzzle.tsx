@@ -10,12 +10,13 @@ import PreviousAnswers from "./PreviousAnswers"
 import { buttons, headings } from "@/ui/fonts"
 
 type PosterPuzzleProps = {
-    movie: Movie
+    movie: Movie,
+    isDailyGame: boolean
 }
 
-export default function PosterPuzzle({movie}: PosterPuzzleProps) {
+export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
 
-    const [state, dispatch] = useReducer(gameStateReducer, movie, gameStateInitialiser);
+    const [state, dispatch] = useReducer(gameStateReducer, {movie, isDailyGame}, gameStateInitialiser);
 
     const handleGuess = () => dispatch({ type: 'PLAY_GUESS' });
 

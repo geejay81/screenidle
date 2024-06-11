@@ -23,7 +23,7 @@ export default async function PostersIdPage({params}: PostersIdPageProps) {
   
     return (
       <main className="max-w-md p-4 mx-auto">
-        <PosterPuzzle movie={movie} />
+        <PosterPuzzle movie={movie} isDailyGame={false} />
       </main>
     );
 }
