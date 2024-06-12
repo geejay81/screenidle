@@ -13,7 +13,7 @@ const config: Config = {
         'screenidle-success': '#98FB98',
         'screenidle-danger': '#FF69B4',
         'screenidle-warning': '#DAF7A6',
-      }
+      },
     },
   },
   plugins: [],

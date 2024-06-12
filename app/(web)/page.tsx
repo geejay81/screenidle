@@ -11,7 +11,7 @@ export default async function Home() {
           <FaClapperboard className="inline" />
           <span>ScreenIdle</span>
         </h1>
-        <Link href="/posters" className="text-lg bg-screenidle-success text-screenidle-link p-4 rounded-lg">
+        <Link href="/posters" className="text-lg bg-screenidle-success text-screenidle-link p-4 rounded-lg bg-gradient-to-r from-screenidle-warning to-screenidle-success border-2 border-white">
           Guess Today&apos;s Movie Poster</Link>
       </div>
     </main>

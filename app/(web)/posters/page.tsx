@@ -4,6 +4,8 @@ import { getCurrentMovie } from "@/data/movies";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Guess the movie poster",
   description: "Can you guess the movie from the pixelated image of the poster?"
@@ -15,9 +17,12 @@ export default async function PostersPage() {
     if (!movie) return notFound();
   
     return (
-      <main className="grow max-w-md p-4 mx-auto">
+      <>
         <Header title={'Guess the movie poster'} />
-        <PosterPuzzle movie={movie} isDailyGame={true} />
-      </main>
+        <main className="grow max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
+          <PosterPuzzle movie={movie} isDailyGame={true} />
+        </main>
+      </>
+      
     );
 }

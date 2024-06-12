@@ -4,11 +4,11 @@ import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export const revalidate = 600;
+export const revalidate = 0;
 
 export const metadata: Metadata = {
     title: "Previous movie poster puzzles",
-    description: "Play the whole filmography!"
+    description: "Play the ScreenIdle filmography!"
 }
 
 export default async function PosterHistoryPage() {
@@ -17,24 +17,27 @@ export default async function PosterHistoryPage() {
     const showHistory = movies && movies.length > 0;
 
     return (
-        <main className="grow max-w-md p-4 mx-auto">
+        <>
             <Header title={'Previous movie poster puzzles'} />
-            {showHistory
-            ?
-                <ul className="list-none m-0">
-                {movies && movies.map((movie: Movie) => (
-                    <li key={movie.gameId} 
-                        className="mr-4 my-2 float-left">
-                        <Link 
-                            href={`/posters/history/${movie.gameId}`}
-                            className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
-                            >{movie.gameId}</Link></li>
-                ))}
-                </ul>
-            :
-                <p>There are no games to play at the moment, but check back tomorrow to play the first.</p>
-            }
-        </main>
+            <main className="grow max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
+                {showHistory
+                ?
+                    <ul className="list-none m-0">
+                    {movies && movies.map((movie: Movie) => (
+                        <li key={movie.gameId} 
+                            className="mr-4 my-2 float-left">
+                            <Link 
+                                href={`/posters/history/${movie.gameId}`}
+                                className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
+                                >{movie.gameId}</Link></li>
+                    ))}
+                    </ul>
+                :
+                    <p>There are no games to play at the moment, but check back tomorrow to play the first.</p>
+                }
+            </main>
+        </>
+        
         
     )
 }

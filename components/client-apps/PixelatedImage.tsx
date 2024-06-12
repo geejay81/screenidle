@@ -50,7 +50,7 @@ const PixelatedImage = ({ imageUrl, pixelSize }: PixelatedImageProps) => {
   useEffect(pixelateImage, [imageUrl, pixelSize]);
 
   return (
-    <canvas ref={canvasRef} style={{maxHeight: "40vh"}} className='mx-auto border-2 border-white' />
+    <canvas ref={canvasRef} className='mx-auto border-2 border-white pixelated-image-canvas' />
   )
 }
 
