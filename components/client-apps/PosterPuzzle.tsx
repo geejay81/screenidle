@@ -21,13 +21,12 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
     const handleGuess = () => dispatch({ type: 'PLAY_GUESS' });
 
     const PlayMode = () => (
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            <div className="space-y-4">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
+            <div className="space-y-4 mt-0">
                 <PixelatedImage imageUrl={movie.poster} pixelSize={state.pixelSize} />
                 <ScoreBoard guesses={state.guesses} />
             </div>
-            
-            <div className="space-y-4">
+            <div className="space-y-4 mt-0">
                 <div className="w-full">
                     <Combobox 
                         selectedItem={state.selectedItem} 

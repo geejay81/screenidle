@@ -1,5 +1,6 @@
 "use client"
 
+import { headings } from "@/ui/fonts"
 import { useCombobox } from "downshift"
 import { useEffect, useState } from "react"
 import { FaCross } from "react-icons/fa"
@@ -58,7 +59,7 @@ function ComboBox({selectedItem, dispatch, srcUrl}: ComboBoxProps) {
     return (
       <div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="search-field" className="w-fit" {...getLabelProps()}>
+          <label htmlFor="search-field" className={`w-fit ${headings.className}`} {...getLabelProps()}>
             Select a movie
           </label>
           <div className="flex shadow-sm bg-white gap-0.5">
