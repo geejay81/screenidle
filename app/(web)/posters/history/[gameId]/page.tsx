@@ -4,7 +4,7 @@ import { getMovie } from "@/data/movies";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 type PostersIdPageProps = {
     params: { gameId: number }

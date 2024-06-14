@@ -1,0 +1,6 @@
+{
+    "crons": [{
+      "path": "/api/caching",
+      "schedule": "45 10 * * *"
+    }]
+}

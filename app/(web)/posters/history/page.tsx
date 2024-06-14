@@ -4,7 +4,7 @@ import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
     title: "Previous movie poster puzzles",
