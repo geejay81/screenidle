@@ -20,20 +20,11 @@ function getOptionFilter(inputValue: string) {
 type ComboBoxProps = {
   selectedItem: string,
   dispatch: any,
-  srcUrl: string
+  options: string[]
 }
 
-function ComboBox({selectedItem, dispatch, srcUrl}: ComboBoxProps) {
-  const [options, setOptions] = useState<string[]>([]);
+function ComboBox({selectedItem, dispatch, options}: ComboBoxProps) {
   const [items, setItems] = useState<string[]>([]);
-
-  useEffect(() => {
-    fetch(srcUrl)
-        .then((res) => res.json())
-        .then((data) => {
-          setOptions(data.movies.map((movie: any) => movie.value));
-        })
-  },[srcUrl]);
 
   const {
     isOpen,

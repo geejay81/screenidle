@@ -2,7 +2,7 @@
 
 import { Movie } from "@/types/Movie"
 import PixelatedImage from "./PixelatedImage"
-import { useReducer } from "react"
+import { useEffect, useReducer, useState } from "react"
 import Combobox from "./Combobox"
 import { gameStateInitialiser, gameStateReducer } from "../reducers/game-state-reducer"
 import ScoreBoard from "./ScoreBoard"
@@ -19,6 +19,15 @@ type PosterPuzzleProps = {
 export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
 
     const [state, dispatch] = useReducer(gameStateReducer, {movie, isDailyGame}, gameStateInitialiser);
+    const [options, setOptions] = useState<string[]>([]);
+
+    useEffect(() => {
+        fetch('/api/movies')
+            .then((res) => res.json())
+            .then((data) => {
+            setOptions(data.movies.map((movie: any) => movie.value));
+            })
+    },[]);
 
     const handleGuess = () => dispatch({ type: 'PLAY_GUESS' });
 
@@ -51,7 +60,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                     <Combobox 
                         selectedItem={state.selectedItem} 
                         dispatch={dispatch} 
-                        srcUrl="/api/movies" />
+                        options={options} />
                 </div>
                 <button 
                     onClick={handleGuess} 
