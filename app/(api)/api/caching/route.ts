@@ -5,7 +5,11 @@ export async function GET(request: NextRequest) {
 
     try {
 
-        if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+        const { nextUrl, headers } = request;
+        const { searchParams } = nextUrl;
+
+        if (headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}` &&
+            searchParams.get('key') !== `${process.env.CRON_SECRET}`) {
             return NextResponse.json({ error: 'Unauthorized' }, {
                 status: 401 })
         }
