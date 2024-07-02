@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     title,
     description,
     images: [
-      '/public/facebook-link-image.png'
+      `${process.env.BASE_URL}/facebook-link-image.png`
     ]
   },
   twitter: {
     title,
     description,
     images: [
-      '/public/twitter-shared-link.png'
+      `${process.env.BASE_URL}/twitter-shared-link.png`
     ]
   }
 };
