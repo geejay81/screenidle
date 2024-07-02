@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     description,
     images: [
       `${process.env.BASE_URL}/twitter-shared-link.png`
-    ]
+    ],
+    card: "summary_large_image"
   }
 };
 
