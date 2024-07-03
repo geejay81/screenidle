@@ -21,10 +21,10 @@ export const shareContent = (shareData: ShareData) => {
           if (e.toString().includes('AbortError')) {
             return;
           }
-          copyToClipBoard(shareData.text)
+          copyToClipBoard(`${shareData.text}\n\n${shareData.url}`);
         });
     } else {
-      copyToClipBoard(shareData.text)
+      copyToClipBoard(`${shareData.text}\n\n${shareData.url}`);
     }
 }
 
