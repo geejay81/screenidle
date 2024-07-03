@@ -5,6 +5,7 @@ const incorrectBox = '🟥';
 const nearlyBox = '🟨'
 const skippedBox = '🟥';
 const blankBox = '⬜';
+const clapper = '🎬';
 
 export const shareContent = (shareData: ShareData) => {
 
@@ -29,7 +30,7 @@ export const shareContent = (shareData: ShareData) => {
 }
 
 export const createShareablePuzzzleBoard = (guesses: Guess[]) => {
-    let result = '';
+    let result = `${clapper}`;
 
     for (let i = 0; i < guesses.length; i++) {
       switch (guesses[i].result) {
