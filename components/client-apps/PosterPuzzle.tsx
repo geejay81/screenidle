@@ -37,7 +37,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
         const url = window.location.href;
         const numberOfTurns = state.guesses?.length ?? 0;
         const text = `ScreenIdle #${movie.gameId} ${numberOfTurns}/6`;
-        const hashtags = `#ScreenIdle #FilmTwitter @popidlegame`;
+        const hashtags = `#ScreenIdle #FilmTwitter #Framed @screenidlegame`;
         const resultEmojiBoard = createShareablePuzzzleBoard(state.guesses);
 
         const textToShare = `${text}\n\n${resultEmojiBoard}\n\n${hashtags}`;
