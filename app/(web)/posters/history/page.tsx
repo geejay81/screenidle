@@ -19,13 +19,14 @@ export default async function PosterHistoryPage() {
     return (
         <>
             <Header title={'Previous movie poster puzzles'} />
-            <main className="grow max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
+            <main className="grow">
+                <div className="max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
                 {showHistory
                 ?
                     <ul className="list-none m-0">
                     {movies && movies.map((movie: Movie) => (
                         <li key={movie.gameId} 
-                            className="mr-4 my-2 float-left">
+                            className="mr-4 my-2 inline-flex">
                             <Link 
                                 href={`/posters/history/${movie.gameId}`}
                                 className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
@@ -35,9 +36,8 @@ export default async function PosterHistoryPage() {
                 :
                     <p>There are no games to play at the moment, but check back tomorrow to play the first.</p>
                 }
+                </div>
             </main>
-        </>
-        
-        
+        </>   
     )
 }

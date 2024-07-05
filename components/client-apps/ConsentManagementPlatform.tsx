@@ -31,7 +31,7 @@ export default function ConsentManagementPlatform({GA_MEASUREMENT_ID} : ConsentM
             <Script src="//www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" onLoad={() => {
                 cookieconsent.run(
                     {
-                      "notice_banner_type":"headline",
+                      "notice_banner_type":"simple",
                       "consent_type":"express",
                       "palette":"light",
                       "language":"en",
@@ -53,8 +53,6 @@ export default function ConsentManagementPlatform({GA_MEASUREMENT_ID} : ConsentM
                       "callbacks_force": true
                     });
             }}></Script>
-            
-            {/* <Script src="/scripts/termsfeed-config.js"></Script> */}
         </>
     );
 }

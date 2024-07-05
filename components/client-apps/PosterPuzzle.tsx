@@ -71,6 +71,9 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                 </button>
                 <PreviousAnswers guesses={state.guesses} /> 
             </div>
+            <div>
+                <p>Poster images provided by <a href="https://www.themoviedb.org">TMDB</a>.</p>
+            </div>
         </div>
     )
 
