@@ -5,10 +5,21 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
+const title = "Guess today's movie poster";
+const description = "Can you guess the movie from today's pixelated image of the poster?";
 
 export const metadata: Metadata = {
-  title: "Guess the movie poster",
-  description: "Can you guess the movie from the pixelated image of the poster?"
+  title,
+  description,
+  openGraph: {
+    url: `${process.env.BASE_URL}/posters`,
+    title,
+    description
+  },
+  twitter: {
+    title,
+    description
+  }
 }
 
 export default async function PostersPage() {

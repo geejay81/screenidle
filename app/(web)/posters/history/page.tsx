@@ -6,9 +6,21 @@ import Link from "next/link";
 
 export const revalidate = 3600;
 
+const title = "Previous movie poster puzzles";
+const description = "Play the ScreenIdle filmography!";
+
 export const metadata: Metadata = {
-    title: "Previous movie poster puzzles",
-    description: "Play the ScreenIdle filmography!"
+    title,
+    description,
+    openGraph: {
+      url: `${process.env.BASE_URL}/posters/history`,
+      title,
+      description
+    },
+    twitter: {
+      title,
+      description
+    }
 }
 
 export default async function PosterHistoryPage() {

@@ -18,17 +18,19 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
+    url: process.env.BASE_URL,
+    type: 'website',
     title,
     description,
     images: [
-      `${process.env.BASE_URL}/facebook-link-image.png`
+      `/facebook-link-image.png`
     ]
   },
   twitter: {
     title,
     description,
     images: [
-      `${process.env.BASE_URL}/twitter-shared-link.png`
+      `/twitter-shared-link.png`
     ],
     card: "summary_large_image"
   }

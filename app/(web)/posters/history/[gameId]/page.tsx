@@ -11,11 +11,24 @@ type PostersIdPageProps = {
 }
 
 export async function generateMetadata({ params }: PostersIdPageProps): Promise<Metadata> {
-    return {
-      title: `Guess the movie, game #${params.gameId}`,
-      description: "Can you guess this previous movie from the pixelated poster?"
+
+  const title = `Guess the movie, game #${params.gameId}`;
+  const description = "Can you guess this previous movie from the pixelated poster?"
+
+  return {
+    title,
+    description,
+    openGraph: {
+      url: `${process.env.BASE_URL}/posters/${params.gameId}`,
+      title,
+      description
+    },
+    twitter: {
+      title,
+      description
     }
   }
+}
 
 export default async function PostersIdPage({params}: PostersIdPageProps) {
 
