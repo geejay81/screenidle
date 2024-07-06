@@ -4,16 +4,16 @@ import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export const revalidate = 3600;
-
 const title = "Previous movie poster puzzles";
 const description = "Play the ScreenIdle filmography!";
+const pageUrl = `${process.env.BASE_URL}posters/history`;
 
 export const metadata: Metadata = {
+    metadataBase: new URL(pageUrl),
     title,
     description,
     openGraph: {
-      url: `${process.env.BASE_URL}/posters/history`,
+      url: pageUrl,
       title,
       description
     },

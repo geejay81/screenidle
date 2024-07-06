@@ -10,6 +10,7 @@ const title = "ScreenIdle";
 const description = "Guess the movie!";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(`${process.env.BASE_URL}`),
   title,
   description,
   icons: {

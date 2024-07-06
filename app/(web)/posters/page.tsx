@@ -4,15 +4,16 @@ import { getCurrentMovie } from "@/data/movies";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const revalidate = 3600;
 const title = "Guess today's movie poster";
 const description = "Can you guess the movie from today's pixelated image of the poster?";
+const pageUrl = `${process.env.BASE_URL}posters`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(pageUrl),
   title,
   description,
   openGraph: {
-    url: `${process.env.BASE_URL}/posters`,
+    url: pageUrl,
     title,
     description
   },

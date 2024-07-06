@@ -14,12 +14,14 @@ export async function generateMetadata({ params }: PostersIdPageProps): Promise<
 
   const title = `Guess the movie, game #${params.gameId}`;
   const description = "Can you guess this previous movie from the pixelated poster?"
+  const pageUrl = `${process.env.BASE_URL}/posters/${params.gameId}`;
 
   return {
+    metadataBase: new URL(pageUrl),
     title,
     description,
     openGraph: {
-      url: `${process.env.BASE_URL}/posters/${params.gameId}`,
+      url: pageUrl,
       title,
       description
     },

@@ -14,7 +14,9 @@ export async function GET(request: NextRequest) {
                 status: 401 })
         }
         
-        revalidatePath('/', 'layout');
+        revalidatePath('/(api)/api/movies', 'page');
+        revalidatePath('/(web)/posters', 'page');
+        revalidatePath('/(web)/posters/history', 'page');
         return NextResponse.json({ revalidated: true, now: Date.now() });
 
     } catch {
