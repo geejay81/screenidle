@@ -19,8 +19,10 @@ export default async function PostersPage() {
     return (
       <>
         <Header title={'Guess the movie poster'} />
-        <main className="grow max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
-          <PosterPuzzle movie={movie} isDailyGame={true} />
+        <main>
+          <div className="grow max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
+            <PosterPuzzle movie={movie} isDailyGame={true} />
+          </div>
         </main>
       </>
       
