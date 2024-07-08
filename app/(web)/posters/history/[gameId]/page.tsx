@@ -1,6 +1,7 @@
 import PosterPuzzle from "@/components/client-apps/PosterPuzzle";
 import Header from "@/components/page/Header";
 import { getMovie } from "@/data/movies";
+import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -16,20 +17,7 @@ export async function generateMetadata({ params }: PostersIdPageProps): Promise<
   const description = "Can you guess this previous movie from the pixelated poster?"
   const pageUrl = `${process.env.BASE_URL}/posters/${params.gameId}`;
 
-  return {
-    metadataBase: new URL(pageUrl),
-    title,
-    description,
-    openGraph: {
-      url: pageUrl,
-      title,
-      description
-    },
-    twitter: {
-      title,
-      description
-    }
-  }
+  return getPageMetaData(title, description, pageUrl);
 }
 
 export default async function PostersIdPage({params}: PostersIdPageProps) {

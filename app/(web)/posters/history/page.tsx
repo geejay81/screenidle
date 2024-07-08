@@ -1,5 +1,6 @@
 import Header from "@/components/page/Header";
 import { getHistoricalMovies } from "@/data/movies"
+import getPageMetaData from "@/lib/getPageMetaData";
 import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -8,20 +9,7 @@ const title = "Previous movie poster puzzles";
 const description = "Play the ScreenIdle filmography!";
 const pageUrl = `${process.env.BASE_URL}posters/history`;
 
-export const metadata: Metadata = {
-    metadataBase: new URL(pageUrl),
-    title,
-    description,
-    openGraph: {
-      url: pageUrl,
-      title,
-      description
-    },
-    twitter: {
-      title,
-      description
-    }
-}
+export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function PosterHistoryPage() {
 

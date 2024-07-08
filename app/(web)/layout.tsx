@@ -4,38 +4,14 @@ import "./globals.css";
 import Navbar from "@/components/page/Navbar";
 import ConsentManagementPlatform from "@/components/client-apps/ConsentManagementPlatform";
 import Footer from "@/components/page/Footer";
+import getPageMetaData from "@/lib/getPageMetaData";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "ScreenIdle";
 const description = "Guess the movie!";
+const pageUrl = process.env.BASE_URL ?? '';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(`${process.env.BASE_URL}`),
-  title,
-  description,
-  icons: {
-    icon: `/favicon.ico`,
-    apple: `/apple-touch-icon.png`,
-  },
-  manifest: '/site.webmanifest',
-  openGraph: {
-    url: process.env.BASE_URL,
-    type: 'website',
-    title,
-    description,
-    images: [
-      `/facebook-link-image.png`
-    ]
-  },
-  twitter: {
-    title,
-    description,
-    images: [
-      `/twitter-shared-link.png`
-    ],
-    card: "summary_large_image"
-  }
-};
+export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default function RootLayout({
   children,
@@ -53,3 +29,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
