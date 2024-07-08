@@ -12,9 +12,8 @@ export default function Footer() {
     ]
     
     return (
-        <footer className="border-t border-slate-400">
-            <div className="max-w-md p-4 mx-auto flex flex-row items-center justify-center
-                md:justify-start md:max-w-screen-lg md:px-8">
+        <footer className="footer-section">
+            <div className="footer-container">
                 {footerLinks.map((link,index) => (
                     <Link key={index} href={link.url} title={`Visit ScreenIdle on ${link.title}`} className="p-4"
                         prefetch={false}>
