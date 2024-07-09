@@ -51,6 +51,12 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
         shareContent(shareData);
     }
 
+    const ImageSource = () => (
+        <div>
+            <p>Poster images provided by <a href="https://www.themoviedb.org">TMDB</a>.</p>
+        </div>
+    )
+
     const PlayMode = () => (
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
             <div className="space-y-4 mt-0">
@@ -71,9 +77,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                 </button>
                 <PreviousAnswers guesses={state.guesses} /> 
             </div>
-            <div>
-                <p>Poster images provided by <a href="https://www.themoviedb.org">TMDB</a>.</p>
-            </div>
+            <ImageSource />
         </div>
     )
 
@@ -95,6 +99,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                 </div>
                 <PreviousAnswers guesses={state.guesses} />
             </div>
+            <ImageSource />
         </div>
     )
 
@@ -116,7 +121,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                 </div>
                 <PreviousAnswers guesses={state.guesses} />
             </div>
-            
+            <ImageSource />
         </div>
     )
 
