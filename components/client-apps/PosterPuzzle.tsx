@@ -79,37 +79,44 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
 
     const WonMode = () => (
         <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
-                <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
-                <p>You knew that the answer was <b>{movie.title}</b>.</p>
-                <div className="w-full p-4 bg-screenidle-link rounded-lg">
-                    <ScoreBoard guesses={state.guesses} />
-                </div>
-                <button
-                    className={`bg-screenidle-success text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
-                    type="button" onClick={handleShare}>
-                        <FaShareNodes className="inline" /><span>Share</span>
-                </button>
+            <div className="space-y-4 mt-0">
+                <PixelatedImage imageUrl={movie.poster} pixelSize={1} />
+                <ScoreBoard guesses={state.guesses} />
             </div>
-            <PreviousAnswers guesses={state.guesses} />
+            <div className="space-y-4 mt-0">
+                <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
+                    <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
+                    <p>You knew that the answer was <b>{movie.title}</b>.</p>
+                    <button
+                        className={`bg-screenidle-success text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                        type="button" onClick={handleShare}>
+                            <FaShareNodes className="inline" /><span>Share result</span>
+                    </button>
+                </div>
+                <PreviousAnswers guesses={state.guesses} />
+            </div>
         </div>
     )
 
     const LostMode = () => (
         <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-xl">
-                <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
-                <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
-                <div className="w-full p-4 bg-screenidle-link rounded-lg">
-                    <ScoreBoard guesses={state.guesses} />
-                </div>
-                <button
-                    className={`bg-screenidle-danger text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
-                    type="button" onClick={handleShare}>
-                    <FaShareNodes className="inline" /><span>Share</span>
-                </button>
+            <div className="space-y-4 mt-0">
+                <PixelatedImage imageUrl={movie.poster} pixelSize={1} />
+                <ScoreBoard guesses={state.guesses} />
             </div>
-            <PreviousAnswers guesses={state.guesses} />
+            <div className="space-y-4 mt-0">
+                <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-xl">
+                    <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
+                    <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
+                    <button
+                        className={`bg-screenidle-danger text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                        type="button" onClick={handleShare}>
+                        <FaShareNodes className="inline" /><span>Share result</span>
+                    </button>
+                </div>
+                <PreviousAnswers guesses={state.guesses} />
+            </div>
+            
         </div>
     )
 
