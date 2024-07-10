@@ -28,13 +28,17 @@ export const gameStateInitialiser = (inits: gameStateInitialiserProps): GameStat
         gameMode = 'lost';
     }
 
+    const pixelSize = ['won','lost'].includes(gameMode)
+        ? 1
+        : levels[guesses.length];
+
     return {
         gameId: inits.movie.gameId,
         isDailyGame: inits.isDailyGame,
         selectedItem: '',
-        guesses: guesses,
-        gameMode: gameMode,
-        pixelSize: levels[guesses.length],
+        guesses,
+        gameMode,
+        pixelSize,
         answer: `${inits.movie.title} (${inits.movie.year})`
     };
 }
@@ -65,7 +69,7 @@ export const gameStateReducer = (state: GameState, action: any): GameState => {
             
             const pixelSize = gameMode == 'play'
                 ? levels[guesses.length]
-                : state.pixelSize;
+                : gameMode !== 'loading' ? 1 : state.pixelSize;
 
             if (state.isDailyGame) setGameState(state.gameId, guesses);
             

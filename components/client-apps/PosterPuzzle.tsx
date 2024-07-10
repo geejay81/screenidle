@@ -9,7 +9,7 @@ import ScoreBoard from "./ScoreBoard"
 import PreviousAnswers from "./PreviousAnswers"
 import { buttons, headings } from "@/ui/fonts"
 import { createShareablePuzzzleBoard, shareContent } from "../client-lib/social-sharer"
-import { FaShareNodes } from "react-icons/fa6"
+import { FaPlay, FaShareNodes } from "react-icons/fa6"
 
 type PosterPuzzleProps = {
     movie: Movie,
@@ -51,77 +51,43 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
         shareContent(shareData);
     }
 
-    const ImageSource = () => (
-        <div>
-            <p>Poster images provided by <a href="https://www.themoviedb.org">TMDB</a>.</p>
-        </div>
-    )
-
     const PlayMode = () => (
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
-            <div className="space-y-4 mt-0">
-                <PixelatedImage imageUrl={movie.poster} pixelSize={state.pixelSize} />
-                <ScoreBoard guesses={state.guesses} />
+        <>
+            <div className="w-full">
+                <Combobox 
+                    selectedItem={state.selectedItem} 
+                    dispatch={dispatch} 
+                    options={options} />
             </div>
-            <div className="space-y-4 mt-0">
-                <div className="w-full">
-                    <Combobox 
-                        selectedItem={state.selectedItem} 
-                        dispatch={dispatch} 
-                        options={options} />
-                </div>
-                <button 
-                    onClick={handleGuess} 
-                    className={`w-full p-4 bg-screenidle-success text-screenidle-link font-bold border border-black mt-2 ${buttons.className}`}>
-                    Guess
-                </button>
-                <PreviousAnswers guesses={state.guesses} /> 
-            </div>
-            <ImageSource />
-        </div>
+            <button 
+                onClick={handleGuess} 
+                className={`w-full flex flex-row space-x-2 items-center justify-center p-4 text-xl bg-screenidle-success text-screenidle-link font-bold border border-black mt-2 ${buttons.className}`}>
+                <FaPlay className="inline" /><span>Guess</span>
+            </button>
+        </>
     )
 
     const WonMode = () => (
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            <div className="space-y-4 mt-0">
-                <PixelatedImage imageUrl={movie.poster} pixelSize={1} />
-                <ScoreBoard guesses={state.guesses} />
-            </div>
-            <div className="space-y-4 mt-0">
-                <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
-                    <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
-                    <p>You knew that the answer was <b>{movie.title}</b>.</p>
-                    <button
-                        className={`bg-screenidle-success text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
-                        type="button" onClick={handleShare}>
-                            <FaShareNodes className="inline" /><span>Share result</span>
-                    </button>
-                </div>
-                <PreviousAnswers guesses={state.guesses} />
-            </div>
-            <ImageSource />
+        <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
+            <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
+            <p>You knew that the answer was <b>{movie.title}</b>.</p>
+            <button
+                className={`bg-screenidle-success text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                type="button" onClick={handleShare}>
+                    <FaShareNodes className="inline" /><span>Share result</span>
+            </button>
         </div>
     )
 
     const LostMode = () => (
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8">
-            <div className="space-y-4 mt-0">
-                <PixelatedImage imageUrl={movie.poster} pixelSize={1} />
-                <ScoreBoard guesses={state.guesses} />
-            </div>
-            <div className="space-y-4 mt-0">
-                <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-xl">
-                    <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
-                    <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
-                    <button
-                        className={`bg-screenidle-danger text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
-                        type="button" onClick={handleShare}>
-                        <FaShareNodes className="inline" /><span>Share result</span>
-                    </button>
-                </div>
-                <PreviousAnswers guesses={state.guesses} />
-            </div>
-            <ImageSource />
+        <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-xl">
+            <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
+            <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
+            <button
+                className={`bg-screenidle-danger text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                type="button" onClick={handleShare}>
+                <FaShareNodes className="inline" /><span>Share result</span>
+            </button>
         </div>
     )
 
@@ -129,11 +95,29 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
         <p>Loading puzzle ...</p>
     )
 
-    switch (state.gameMode) {
-        case 'loading': return <LoadingMode />
-        case 'play': return <PlayMode />
-        case 'won': return <WonMode />
-        case 'lost': return <LostMode />
-        default: return <LoadingMode />
+    const displayMode = () => {
+        switch (state.gameMode) {
+            case 'loading': return <LoadingMode />
+            case 'play': return <PlayMode />
+            case 'won': return <WonMode />
+            case 'lost': return <LostMode />
+            default: return <LoadingMode />
+        }
     }
+
+    return (
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
+            <div className="space-y-4 mt-0">
+                <PixelatedImage imageUrl={movie.poster} pixelSize={state.pixelSize} />
+                <ScoreBoard guesses={state.guesses} />
+            </div>
+            <div className="space-y-4 mt-0">
+                {displayMode()}
+                <PreviousAnswers guesses={state.guesses} /> 
+            </div>
+            <div>
+                <p>Poster images provided by <a href="https://www.themoviedb.org" className="font-semibold">TMDB</a>.</p>
+            </div>
+        </div>
+    )
 }
