@@ -1,6 +1,6 @@
-import { logo } from "@/ui/fonts";
+import { headings, logo } from "@/ui/fonts";
 import Link from "next/link";
-import { FaClapperboard } from "react-icons/fa6";
+import { FaClapperboard, FaPlay } from "react-icons/fa6";
 
 export default async function Home() {
 
@@ -11,8 +11,8 @@ export default async function Home() {
           <FaClapperboard className="inline" />
           <span>ScreenIdle</span>
         </h1>
-        <Link href="/posters" className="home-cta">
-          Guess Today&apos;s Movie Poster</Link>
+        <Link href="/posters" className={`home-cta ${headings.className}`}>
+          <FaPlay className="inline" />Play Today&apos;s Movie Poster Game</Link>
       </div>
     </main>
   );
