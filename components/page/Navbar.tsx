@@ -1,6 +1,6 @@
 import { headings } from "@/ui/fonts";
 import Link from "next/link";
-import { FaCalendar, FaFilm } from "react-icons/fa";
+import { FaCalendar, FaFilm, FaGamepad } from "react-icons/fa";
 import { FaClapperboard } from "react-icons/fa6";
 
 const navLinks = [
@@ -13,6 +13,11 @@ const navLinks = [
         "url": "/posters/history",
         "title": "History",
         "icon": <FaCalendar className="inline" />
+    },
+    {
+        "url": "/games",
+        "title": "More games",
+        "icon": <FaGamepad className="inline" />
     }
 ]
 

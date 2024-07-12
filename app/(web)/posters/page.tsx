@@ -25,6 +25,5 @@ export default async function PostersPage() {
           </div>
         </main>
       </>
-      
     );
 }
