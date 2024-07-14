@@ -75,8 +75,8 @@ export const gameStateReducer = (state: GameState, action: any): GameState => {
             
             if (gameMode == "play") {
                 document.getElementById('search-field')?.focus();
-            } else if (state.isDailyGame) {
-                setHistoryState(result, state.guesses, state.gameId);
+            } else if (state.isDailyGame && ['won', 'lost'].includes(gameMode)) {
+                setHistoryState(gameMode, guesses, state.gameId);
             }
             
             return { ...state, gameMode, pixelSize, guesses, selectedItem: '' }

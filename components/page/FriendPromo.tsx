@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function FriendPromo(friend: Friend) {
-
     return (
         <div className="bg-white rounded-lg">
             <Link href={friend.linkUrl} target="_blank">

@@ -10,6 +10,7 @@ import PreviousAnswers from "./PreviousAnswers"
 import { buttons, headings } from "@/ui/fonts"
 import { createShareablePuzzzleBoard, shareContent } from "../client-lib/social-sharer"
 import { FaPlay, FaShareNodes } from "react-icons/fa6"
+import GameHistory from "./GameHistory"
 
 type PosterPuzzleProps = {
     movie: Movie,
@@ -68,27 +69,33 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
     )
 
     const WonMode = () => (
-        <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-xl">
-            <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
-            <p>You knew that the answer was <b>{movie.title}</b>.</p>
-            <button
-                className={`bg-screenidle-success text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
-                type="button" onClick={handleShare}>
-                    <FaShareNodes className="inline" /><span>Share result</span>
-            </button>
-        </div>
+        <>
+            <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-lg">
+                <h2 className={`font-bold text-2xl ${headings.className}`}>You won!</h2>
+                <p>You knew that the answer was <b>{movie.title}</b>.</p>
+                <button
+                    className={`bg-screenidle-success text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                    type="button" onClick={handleShare}>
+                        <FaShareNodes className="inline" /><span>Share result</span>
+                </button>
+            </div>
+            {state.isDailyGame && <GameHistory />}
+        </>
     )
 
     const LostMode = () => (
-        <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-xl">
-            <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
-            <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
-            <button
-                className={`bg-screenidle-danger text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
-                type="button" onClick={handleShare}>
-                <FaShareNodes className="inline" /><span>Share result</span>
-            </button>
-        </div>
+        <>
+            <div className="w-full p-4 mb-4 bg-screenidle-danger text-screenidle-link space-y-4 rounded-lg">
+                <h2 className={`font-bold text-2xl ${headings.className}`}>You lost!</h2>
+                <p>The answer that you were looking for was <b>{movie.title}</b>.</p>
+                <button
+                    className={`bg-screenidle-danger text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                    type="button" onClick={handleShare}>
+                    <FaShareNodes className="inline" /><span>Share result</span>
+                </button>
+            </div>
+            {state.isDailyGame && <GameHistory />}
+        </>
     )
 
     const LoadingMode = () => (
