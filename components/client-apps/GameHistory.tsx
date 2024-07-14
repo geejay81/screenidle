@@ -9,7 +9,7 @@ export default function GameHistory() {
     const historyStats: IHistoryState = getHistoryState();
 
     return (
-        (historyStats.gamesPlayed == 0 || historyStats.previousGame < 11)
+        (historyStats.gamesPlayed == 0 || historyStats.previousGame < 10)
             ? <></>
             : <div className="p-6 rounded-lg bg-screenidle-warning text-screenidle-link space-y-4">
             <h2 className={`text-2xl font-bold ${headings.className}`}>Box Office Hit?</h2>

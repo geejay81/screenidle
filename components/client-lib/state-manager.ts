@@ -84,7 +84,7 @@ export function getHistoryState() {
     if (existingHistory !== null) {
       const history = Object.assign(new HistoryState(), JSON.parse(existingHistory));
 
-      if (history.previousGame > 10) return history;
+      if (history.previousGame > 9) return history;
     }
     return new HistoryState();
   }
