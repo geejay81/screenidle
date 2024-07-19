@@ -1,3 +1,4 @@
+import { GameTypes } from "./GameTypes";
 import { Guess } from "./Guess";
 
 export type GameState = {
@@ -7,5 +8,6 @@ export type GameState = {
     guesses: Guess[];
     gameMode: string;
     pixelSize: number;
-    answer: string
+    answer: string;
+    gameType: GameTypes;
 }

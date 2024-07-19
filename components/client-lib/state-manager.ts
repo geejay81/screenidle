@@ -1,14 +1,27 @@
 "use client"
 
+import { GameTypes } from "@/types/GameTypes";
 import { Guess } from "@/types/Guess";
 import { HistoryState, IGuessHistory, IHistoryState } from "@/types/History";
 import { State } from "@/types/State";
 
-const historyStateKey = 'streetidle-history';
-const gameStateKey = 'streetidle-movie-state';
+const getGameStateKey = (gameType: GameTypes) => {
+  switch (gameType) {
+    default: return 'streetidle-movie-state';
+  }
+}
 
-export function setGameState(gameId: number, guesses: Guess[]): void {
+const getHistoryStateKey = (gameType: GameTypes) => {
+  switch (gameType) {
+    default: return 'streetidle-history';
+  }
+}
+
+export function setGameState(gameId: number, guesses: Guess[], gameType: GameTypes): void {
     if (typeof window !== "undefined" && window.localStorage) {
+
+      const gameStateKey = getGameStateKey(gameType);
+
       let state = new State();
       state.puzzleNumber = gameId;
       state.guesses = guesses;
@@ -16,10 +29,13 @@ export function setGameState(gameId: number, guesses: Guess[]): void {
     }
   }
 
-export function setHistoryState(gameResult: string, guesses: Guess[], gameId: number) {
+export function setHistoryState(gameResult: string, guesses: Guess[], gameId: number, gameType: GameTypes) {
   
   if (typeof window !== "undefined" && window.localStorage) {  
-    let currentHistory: IHistoryState = getHistoryState();
+
+    const historyStateKey = getHistoryStateKey(gameType);
+
+    let currentHistory: IHistoryState = getHistoryState(gameType);
     currentHistory.gamesPlayed = currentHistory.gamesPlayed + 1;
     currentHistory.gamesWon = currentHistory.gamesWon + (gameResult === 'won' ? 1: 0);
     currentHistory.winPercentage = (currentHistory.gamesWon / currentHistory.gamesPlayed) * 100.00;
@@ -78,8 +94,9 @@ function calculateAverageGuesses(guesses: IGuessHistory, gamesPlayed: number): n
     return Number((totalGuesses / gamesPlayed).toPrecision(3));
   }
 
-export function getHistoryState() {
+export function getHistoryState(gameType: GameTypes) {
   if (typeof window !== "undefined" && window.localStorage) {
+    const historyStateKey = getHistoryStateKey(gameType);
     const existingHistory = localStorage.getItem(historyStateKey);
     if (existingHistory !== null) {
       const history = Object.assign(new HistoryState(), JSON.parse(existingHistory));
@@ -90,8 +107,9 @@ export function getHistoryState() {
   }
 }
 
-export function getGameState() {
+export function getGameState(gameType: GameTypes) {
   if (typeof window !== "undefined" && window.localStorage) {
+    const gameStateKey = getGameStateKey(gameType);
     const existingState = localStorage.getItem(gameStateKey);
     if (existingState !== null) 
       return Object.assign(new State(), JSON.parse(existingState));

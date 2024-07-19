@@ -3,10 +3,15 @@
 import { IHistoryState } from "@/types/History";
 import { getHistoryState } from "../client-lib/state-manager";
 import { headings } from "@/ui/fonts";
+import { GameTypes } from "@/types/GameTypes";
 
-export default function GameHistory() {
+type GameHistoryProps = {
+    gameType: GameTypes
+}
 
-    const historyStats: IHistoryState = getHistoryState();
+export default function GameHistory({gameType}: GameHistoryProps) {
+
+    const historyStats: IHistoryState = getHistoryState(gameType);
 
     return (
         (historyStats.gamesPlayed == 0 || historyStats.previousGame < 10)

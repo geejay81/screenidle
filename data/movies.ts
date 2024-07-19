@@ -68,7 +68,8 @@ export async function getAllMovies() {
             year,
             imdbId,
             tmdbId,
-            "poster": poster.asset->url
+            "poster": poster.asset->url,
+            tagline
         } | order(title)`,
         {},
         filteredResponseQueryOptions

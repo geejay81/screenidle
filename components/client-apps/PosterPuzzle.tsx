@@ -11,6 +11,7 @@ import { buttons, headings } from "@/ui/fonts"
 import { createShareablePuzzzleBoard, shareContent } from "../client-lib/social-sharer"
 import { FaPlay, FaShareNodes } from "react-icons/fa6"
 import GameHistory from "./GameHistory"
+import { GameTypes } from "@/types/GameTypes"
 
 type PosterPuzzleProps = {
     movie: Movie,
@@ -19,7 +20,7 @@ type PosterPuzzleProps = {
 
 export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
 
-    const [state, dispatch] = useReducer(gameStateReducer, {movie, isDailyGame}, gameStateInitialiser);
+    const [state, dispatch] = useReducer(gameStateReducer, {movie, gameType: GameTypes.Poster, isDailyGame}, gameStateInitialiser);
     const [options, setOptions] = useState<string[]>([]);
 
     useEffect(() => {
@@ -79,7 +80,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                         <FaShareNodes className="inline" /><span>Share result</span>
                 </button>
             </div>
-            {state.isDailyGame && <GameHistory />}
+            {state.isDailyGame && <GameHistory gameType={GameTypes.Poster} />}
         </>
     )
 
@@ -94,7 +95,7 @@ export default function PosterPuzzle({movie, isDailyGame}: PosterPuzzleProps) {
                     <FaShareNodes className="inline" /><span>Share result</span>
                 </button>
             </div>
-            {state.isDailyGame && <GameHistory />}
+            {state.isDailyGame && <GameHistory gameType={GameTypes.Poster} />}
         </>
     )
 

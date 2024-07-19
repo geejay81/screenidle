@@ -6,4 +6,5 @@ export type Movie = {
     imdbId: string;
     tmdbId: string;
     poster: string;
+    tagline: string;
 }
