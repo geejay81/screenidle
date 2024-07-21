@@ -7,12 +7,14 @@ import { State } from "@/types/State";
 
 const getGameStateKey = (gameType: GameTypes) => {
   switch (gameType) {
+    case GameTypes.Tagline: return 'streetidle-taglines-state'
     default: return 'streetidle-movie-state';
   }
 }
 
 const getHistoryStateKey = (gameType: GameTypes) => {
   switch (gameType) {
+    case GameTypes.Tagline: return 'streetidle-taglines-history';
     default: return 'streetidle-history';
   }
 }

@@ -21,19 +21,19 @@ export default function GameHistory({gameType}: GameHistoryProps) {
             <dl className="max-w-md text-slate-900 grid grid-cols-2 gap-4">
                 <div>
                     <dt className="mb-1 text-slate-800 md:text-lg text-center">Current streak</dt>
-                    <dd className="text-xl3 font-semibold text-center">{historyStats.currentStreak}</dd>
+                    <dd className="text-2xl font-semibold text-center">{historyStats.currentStreak}</dd>
                 </div>
                 <div>
                     <dt className="mb-1 text-slate-800 md:text-lg text-center">Max streak</dt>
-                    <dd className="text-xl3 font-semibold text-center">{historyStats.maxStreak}</dd>
+                    <dd className="text-2xl font-semibold text-center">{historyStats.maxStreak}</dd>
                 </div>
                 <div>
                     <dt className="mb-1 text-slate-800 md:text-lg text-center">Games won</dt>
-                    <dd className="text-xl3 font-semibold text-center">{historyStats.gamesWon}/{historyStats.gamesPlayed}</dd>
+                    <dd className="text-2xl font-semibold text-center">{historyStats.gamesWon}/{historyStats.gamesPlayed}</dd>
                 </div>
                 <div>
                     <dt className="mb-1 text-slate-800 md:text-lg text-center">Games won</dt>
-                    <dd className="text-xl3 font-semibold text-center">{historyStats.winPercentage.toFixed(2)}%</dd>
+                    <dd className="text-2xl font-semibold text-center">{historyStats.winPercentage.toFixed(2)}%</dd>
                 </div>
             </dl>
         </div>
