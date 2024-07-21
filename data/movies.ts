@@ -2,10 +2,18 @@ import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client-config";
 import gameConfig from "./config/game-config";
 import { Movie } from "@/types/Movie";
+import taglines from '@/data/taglines.json';
 
 const currentPuzzleId = () => {    
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
     const startDate = new Date(process.env.START_DATE ?? '2022-05-22');
+    const today = new Date();
+    return Math.floor((today.getTime() - startDate.getTime()) / _MS_PER_DAY) + 1;
+}
+
+const currentTaglinePuzzleId = () => {    
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const startDate = new Date(process.env.TAGLINE_START_DATE ?? '2024-07-22');
     const today = new Date();
     return Math.floor((today.getTime() - startDate.getTime()) / _MS_PER_DAY) + 1;
 }
@@ -30,6 +38,12 @@ export async function getCurrentMovie() {
     return await getMovie(currentPuzzleDate);
 }
 
+export async function getCurrentTaglineMovie() {
+    const currentPuzzleDate = currentTaglinePuzzleId();
+
+    return await getTaglineMovie(currentPuzzleDate);
+}
+
 export async function getMovie(gameId: number) {
 
     const currentPuzzleDate = currentPuzzleId();
@@ -39,6 +53,23 @@ export async function getMovie(gameId: number) {
     const alMovies = await getAllMovies();
 
     const selectedMovies =  alMovies.filter((movie: Movie) => movie.gameId == gameId);
+
+    if (selectedMovies === null || selectedMovies.length === 0) return null;
+
+    return selectedMovies[0];
+}
+
+export async function getTaglineMovie(gameId: number) {
+
+    const currentPuzzleDate = currentTaglinePuzzleId();
+
+    if (gameId > currentPuzzleDate) return null;
+
+    const _id = taglines[gameId - 1]._id;
+
+    const alMovies = await getAllMovies();
+
+    const selectedMovies =  alMovies.filter((movie: Movie) => movie._id == _id);
 
     if (selectedMovies === null || selectedMovies.length === 0) return null;
 

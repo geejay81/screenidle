@@ -1,6 +1,6 @@
 import TaglinePuzzle from "@/components/client-apps/TaglinePuzzle";
 import Header from "@/components/page/Header";
-import { getCurrentMovie } from "@/data/movies";
+import { getCurrentTaglineMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -12,7 +12,7 @@ const pageUrl = `${process.env.BASE_URL}taglines`;
 export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function TaglinesPage() {
-    const movie = await getCurrentMovie();
+    const movie = await getCurrentTaglineMovie();
 
     if (!movie) return notFound();
   
