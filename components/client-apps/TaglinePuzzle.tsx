@@ -115,7 +115,7 @@ export default function TaglinePuzzle({movie, isDailyGame}: TaglinePuzzleProps) 
     return (
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
             <div className="space-y-4 mt-0">
-                <p className="text-2xl p-4 md:p-10 md:text-5xl font-bold italic border-2 border-slate-200 rounded-md">{movie.tagline}</p>
+                <p className="text-2xl p-4 md:p-10 md:text-5xl font-bold italic border-2 border-slate-200 rounded-md">{movie.tagline}<br /><span className="text-lg">({movie.year})</span></p>
                 <ScoreBoard guesses={state.guesses} />
             </div>
             <div className="space-y-4 mt-0">
