@@ -73,7 +73,9 @@ export async function getTaglineMovie(gameId: number) {
 
     if (selectedMovies === null || selectedMovies.length === 0) return null;
 
-    return selectedMovies[0];
+    var result = {...selectedMovies[0], gameId}
+
+    return result;
 }
 
 export async function getHistoricalMovies() {
