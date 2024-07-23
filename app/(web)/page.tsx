@@ -17,7 +17,7 @@ export default async function Home() {
             <FaPlay className="inline" />
             <span>Play Today&apos;s Movie Poster Game</span>
           </Link>
-          <Link href="/posters" className={`home-cta ${headings.className} m-4`}>
+          <Link href="/taglines" className={`home-cta ${headings.className} m-4`}>
             <FaQuoteLeft className="inline" />
             <span>Play Today&apos;s Movie Tagline Game</span>
           </Link>
