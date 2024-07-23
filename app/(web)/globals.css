@@ -71,7 +71,7 @@ body {
 }
 
 .home-cta {
-    @apply text-lg bg-screenidle-success text-screenidle-link p-4 rounded-lg bg-gradient-to-r from-screenidle-warning to-screenidle-success border-2 border-white flex flex-row space-x-2 items-center justify-center;
+    @apply text-lg bg-screenidle-success text-screenidle-link p-4 rounded-lg flex flex-row space-x-2 items-center justify-center;
 }
 
 .pixelated-image-canvas {
