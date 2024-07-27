@@ -79,7 +79,7 @@ export default function TaglinePuzzle({movie, isDailyGame}: TaglinePuzzleProps) 
                         <FaShareNodes className="inline" /><span>Share result</span>
                 </button>
             </div>
-            {state.isDailyGame && <GameHistory gameType={GameTypes.Tagline} />}
+            {state.isDailyGame && <GameHistory gameType={state.gameType} />}
         </>
     )
 
@@ -94,7 +94,7 @@ export default function TaglinePuzzle({movie, isDailyGame}: TaglinePuzzleProps) 
                     <FaShareNodes className="inline" /><span>Share result</span>
                 </button>
             </div>
-            {state.isDailyGame && <GameHistory gameType={GameTypes.Tagline} />}
+            {state.isDailyGame && <GameHistory gameType={state.gameType} />}
         </>
     )
 
