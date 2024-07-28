@@ -12,8 +12,6 @@ type GameHistoryProps = {
 export default function GameHistory({gameType}: GameHistoryProps) {
 
     const historyStats: IHistoryState = getHistoryState(gameType);
-
-    console.log(historyStats, `gameType: ${gameType}`);
     
     return (
         ((historyStats.gamesPlayed == 0 || historyStats.previousGame < 10) && gameType === GameTypes.Poster)

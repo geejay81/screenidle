@@ -78,7 +78,6 @@ export function setHistoryState(gameResult: string, guesses: Guess[], gameId: nu
     }
     currentHistory.averageGuesses = calculateAverageGuesses(currentHistory.guesses, currentHistory.gamesPlayed);
     currentHistory.previousGame = gameId;
-    console.log(currentHistory);
     localStorage.setItem(historyStateKey, JSON.stringify(currentHistory));
   }
 }
@@ -97,15 +96,11 @@ function calculateAverageGuesses(guesses: IGuessHistory, gamesPlayed: number): n
   }
 
 export function getHistoryState(gameType: GameTypes) {
-  console.log(`getHistoryState ${gameType}`)
   if (typeof window !== "undefined" && window.localStorage) {
     const historyStateKey = getHistoryStateKey(gameType);
     const existingHistory = localStorage.getItem(historyStateKey);
-    console.log(`existingHistory`,existingHistory);
     if (existingHistory !== null) {
-      const history = Object.assign(new HistoryState(), JSON.parse(existingHistory));
-
-      if (history.previousGame > 9) return history;
+      return Object.assign(new HistoryState(), JSON.parse(existingHistory));
     }
     return new HistoryState();
   }
