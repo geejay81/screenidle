@@ -97,9 +97,11 @@ function calculateAverageGuesses(guesses: IGuessHistory, gamesPlayed: number): n
   }
 
 export function getHistoryState(gameType: GameTypes) {
+  console.log(`getHistoryState ${gameType}`)
   if (typeof window !== "undefined" && window.localStorage) {
     const historyStateKey = getHistoryStateKey(gameType);
     const existingHistory = localStorage.getItem(historyStateKey);
+    console.log(`existingHistory`,existingHistory);
     if (existingHistory !== null) {
       const history = Object.assign(new HistoryState(), JSON.parse(existingHistory));
 
