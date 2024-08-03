@@ -5,6 +5,8 @@ import Navbar from "@/components/page/Navbar";
 import ConsentManagementPlatform from "@/components/client-apps/ConsentManagementPlatform";
 import Footer from "@/components/page/Footer";
 import getPageMetaData from "@/lib/getPageMetaData";
+import Script from "next/script";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "ScreenIdle";
@@ -25,6 +27,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <ConsentManagementPlatform GA_MEASUREMENT_ID={process.env.GTAG || ''} />
+        <Script src="/scripts/clarity.js" strategy="afterInteractive"></Script>
       </body>
     </html>
   );
