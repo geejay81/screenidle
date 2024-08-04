@@ -4,6 +4,7 @@ import Script from "next/script";
 
 declare var cookieconsent: any;
 declare var gtag: any;
+declare var window: any;
 
 type ConsentManagementPlatformProps = {
     GA_MEASUREMENT_ID : string
@@ -46,6 +47,7 @@ export default function ConsentManagementPlatform({GA_MEASUREMENT_ID} : ConsentM
                               gtag('consent', 'update', {
                                 'analytics_storage': 'granted'
                               });
+                              if (window.clarity) window.clarity('consent');
                               break;
                           }
                         }
