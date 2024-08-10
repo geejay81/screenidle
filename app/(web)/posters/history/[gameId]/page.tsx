@@ -13,7 +13,7 @@ type PostersIdPageProps = {
 
 export async function generateMetadata({ params }: PostersIdPageProps): Promise<Metadata> {
 
-  const title = `Guess the movie, game #${params.gameId}`;
+  const title = `Guess the movie poster, game #${params.gameId}`;
   const description = "Can you guess this previous movie from the pixelated poster?"
   const pageUrl = `${process.env.BASE_URL}/posters/${params.gameId}`;
 
@@ -28,7 +28,7 @@ export default async function PostersIdPage({params}: PostersIdPageProps) {
   
     return (
       <>
-        <Header title={'Guess the previous movie poster'} />
+        <Header title={`Guess the movie poster, game #${params.gameId}`} />
         <main className="grow">
           <div className="max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
             <PosterPuzzle movie={movie} isDailyGame={false} />

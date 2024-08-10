@@ -78,6 +78,11 @@ export async function getTaglineMovie(gameId: number) {
     return result;
 }
 
+export async function getCurrentTaglinePuzzleNumber() {
+
+    return currentTaglinePuzzleId();
+}
+
 export async function getHistoricalMovies() {
     
     const currentPuzzleDate = currentPuzzleId();

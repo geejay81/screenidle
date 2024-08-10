@@ -23,6 +23,11 @@ const navLinks = [
         "icon": <FaQuoteLeft className="inline" />
     },
     {
+        "url": "/taglines/history",
+        "title": "Tagline game history",
+        "icon": <FaCalendar className="inline" />
+    },
+    {
         "url": "/games",
         "title": "More games",
         "icon": <FaGamepad className="inline" />
