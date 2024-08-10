@@ -6,6 +6,7 @@ import ConsentManagementPlatform from "@/components/client-apps/ConsentManagemen
 import Footer from "@/components/page/Footer";
 import getPageMetaData from "@/lib/getPageMetaData";
 import Script from "next/script";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "ScreenIdle";
@@ -21,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-9824524266019448"></meta>
+      </head>
       <body className={`${inter.className}`}>
         <Navbar />
         {children}
