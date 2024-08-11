@@ -16,7 +16,7 @@ export default function GameHistory({gameType}: GameHistoryProps) {
     return (
         ((historyStats.gamesPlayed == 0 || historyStats.previousGame < 10) && gameType === GameTypes.Poster)
             ? <></>
-            : <div className="p-6 rounded-lg bg-screenidle-warning text-screenidle-link space-y-4">
+            : <div className="p-4 rounded-lg bg-screenidle-warning text-screenidle-link space-y-4">
             <h2 className={`text-2xl font-bold ${headings.className}`}>Box Office Hit?</h2>
             <dl className="max-w-md text-slate-900 grid grid-cols-2 gap-4">
                 <div>
