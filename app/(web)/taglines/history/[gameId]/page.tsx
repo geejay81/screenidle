@@ -1,6 +1,6 @@
 import TaglinePuzzle from "@/components/client-apps/TaglinePuzzle";
 import Header from "@/components/page/Header";
-import { getMovie } from "@/data/movies";
+import { getTaglineMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: TaglinesIdPageProps): Promise
 
 export default async function TaglinesIdPage({ params }: TaglinesIdPageProps) {
 
-    const movie = await getMovie(params.gameId);
+    const movie = await getTaglineMovie(params.gameId);
 
     if (!movie) return notFound();
 
