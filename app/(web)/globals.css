@@ -85,3 +85,32 @@ body {
         max-width: 40vh;
     }
 }
+
+.keyboard-row {
+    @apply 
+        flex 
+        justify-center 
+        w-full 
+        mt-0
+        mb-2
+        mx-auto
+        touch-manipulation
+}
+
+.keyboard-row button {
+    @apply
+        font-bold
+        h-12
+        cursor-pointer
+        bg-screenidle-warning
+        text-screenidle-link
+        flex-grow
+        uppercase
+        mr-1
+        rounded-md
+        select-none
+        disabled:bg-slate-300
+        text-sm
+        xs:text-base
+        md:text-lg
+}

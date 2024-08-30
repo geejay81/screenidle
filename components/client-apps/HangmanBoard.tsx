@@ -1,13 +1,12 @@
 "use client"
 
 type HangmanBoardProps = {
-    answer: string,
-    guessedLetters: string[]
+    answer: string;
+    guessedLetters: string[];
+    alphabet: string
 }
 
-export default function HangmanBoard({answer, guessedLetters}: HangmanBoardProps) {
-    
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export default function HangmanBoard({answer, guessedLetters, alphabet}: HangmanBoardProps) {
 
     return (
         <div className="word tracking-widest text-2xl md:text-5xl w-full text-center">
