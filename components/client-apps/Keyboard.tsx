@@ -1,16 +1,11 @@
-type KeyboardProps = {
+interface KeyboardProps {
     handleGuess: (key: string) => void;
-    guessedLetters: string[]
-    wrongGuesses: string[]
+    guessedLetters: string[];
 }
 
-export default function Keyboard({handleGuess, guessedLetters, wrongGuesses}: KeyboardProps) {
+export default function Keyboard({handleGuess, guessedLetters}: KeyboardProps) {
     
-    const row1Letters = 'QWERTYUIOP';
-    const row2Letters = 'ASDFGHJKL';
-    const row3Letters = 'ZXCVBNM';
-
-    const rows = [row1Letters, row2Letters, row3Letters];
+    const rows = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
     
     return (
         <div id="keyboard" className="max-w-lg m-auto">

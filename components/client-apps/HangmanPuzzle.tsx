@@ -67,7 +67,7 @@ export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
         <div className="space-y-8">
             <HangmanBoard answer={movie.title} guessedLetters={guessedLetters} alphabet={alphabet} />
             <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} />
-            <Keyboard handleGuess={handleGuess} guessedLetters={guessedLetters} wrongGuesses={wrongGuesses} />
+            <Keyboard handleGuess={handleGuess} guessedLetters={guessedLetters} />
         </div>
     )
 
