@@ -113,7 +113,7 @@ export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
 
 const ResultMessage = ({heading, bgColor, children} : ResultMessageProps) => {
     return (
-        <div className={`${bgColor} text-screenidle-link space-y-4 p-4 rounded-md`}>
+        <div className={`${bgColor} text-screenidle-link space-y-4 p-4 rounded-md`} role="alert">
             <h2 className={`font-bold text-2xl ${headings.className}`}>{heading}</h2>
             {children}
         </div>

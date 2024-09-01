@@ -6,7 +6,6 @@ import ConsentManagementPlatform from "@/components/client-apps/ConsentManagemen
 import Footer from "@/components/page/Footer";
 import getPageMetaData from "@/lib/getPageMetaData";
 import Script from "next/script";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "ScreenIdle";
