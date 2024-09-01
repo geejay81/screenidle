@@ -6,11 +6,17 @@ import { useState } from "react"
 import Keyboard from "./Keyboard"
 import LifeBar from "./LifeBar"
 import { headings } from "@/ui/fonts"
-import PixelatedImage from "./PixelatedImage"
 
-type HangmanPuzzleProps = {
+interface HangmanPuzzleProps {
     movie: Movie
 }
+
+interface ResultMessageProps {
+    heading: string;
+    bgColor: string;
+    children: React.ReactNode;
+}
+
 export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
     const [wrongGuesses, setWrongGuesses] = useState<string[]>([]);
@@ -57,24 +63,36 @@ export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
     )
 
     const LostMode = () => (
-        <div className="space-y-8">
-            <PixelatedImage imageUrl={movie.poster} pixelSize={1} />
-            <div className="bg-screenidle-danger text-screenidle-link space-y-4 p-4 rounded-md">
-                <h2 className={`font-bold text-2xl ${headings.className}`}>Game Over!</h2>
-                <p>The answer was <span className="font-bold">{movie.title}</span></p>
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
+            <div className="space-y-4 mt-0">
+                <PosterImage imageUrl={movie.poster} alt={`${movie.title} poster`} />
             </div>
-            <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} />
+            <div className="space-y-4 mt-0">
+                <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} color="danger" />
+                <ResultMessage heading="Game Over!" bgColor="bg-screenidle-danger">
+                    <p>Bad luck. The answer to this puzzle was <span className="font-bold">{movie.title}</span>.</p>
+                </ResultMessage>
+            </div>
+            <div>
+                <p>Poster images provided by <a href="https://www.themoviedb.org" className="font-semibold">TMDB</a>.</p>
+            </div>
         </div>
     )
 
     const WonMode = () => (
-        <div className="space-y-8">
-            <PixelatedImage imageUrl={movie.poster} pixelSize={1} />
-            <div className="bg-screenidle-success text-screenidle-link space-y-4 p-4 rounded-md">
-                <h2 className={`font-bold text-2xl ${headings.className}`}>Winner!</h2>
-                <p>You new the answer was <span className="font-bold">{movie.title}</span></p>
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 mt-0">
+            <div className="space-y-4 mt-0">
+                <PosterImage imageUrl={movie.poster} alt={`${movie.title} poster`} />
             </div>
-            <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} />
+            <div className="space-y-4 mt-0">
+                <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} color="danger" />
+                <ResultMessage heading="Winner!" bgColor="bg-screenidle-success">
+                    <p>Congatulations! You knew that the answer was <span className="font-bold">{movie.title}</span>.</p>
+                </ResultMessage>
+            </div>
+            <div>
+                <p>Poster images provided by <a href="https://www.themoviedb.org" className="font-semibold">TMDB</a>.</p>
+            </div>
         </div>
     )
 
@@ -83,4 +101,25 @@ export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
         case 'lost': return <LostMode />
         default: return <PlayMode />
     }
+}
+
+const ResultMessage = ({heading, bgColor, children} : ResultMessageProps) => {
+    return (
+        <div className={`${bgColor} text-screenidle-link space-y-4 p-4 rounded-md`}>
+            <h2 className={`font-bold text-2xl ${headings.className}`}>{heading}</h2>
+            {children}
+        </div>
+    )
+}
+
+interface PosterImageProps {
+    imageUrl: string,
+    alt: string
+}
+
+const PosterImage = ({imageUrl, alt}: PosterImageProps) => {
+    return (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={imageUrl} alt={alt} className="mx-auto border-2 border-white pixelated-image-canvas" />        
+    )
 }

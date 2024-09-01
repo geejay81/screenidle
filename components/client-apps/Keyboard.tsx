@@ -13,7 +13,7 @@ export default function Keyboard({handleGuess, guessedLetters, wrongGuesses}: Ke
     const rows = [row1Letters, row2Letters, row3Letters];
     
     return (
-        <div id="keyboard">
+        <div id="keyboard" className="max-w-lg m-auto">
             {rows.map((row: string, index: number) => (
                 <div  className="keyboard-row" key={index}>
                     {row.toUpperCase().split('').map((key: string) => (
