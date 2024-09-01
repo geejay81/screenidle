@@ -15,12 +15,14 @@ export default function Keyboard({handleGuess, guessedLetters, wrongGuesses}: Ke
     return (
         <div id="keyboard" className="max-w-lg m-auto">
             {rows.map((row: string, index: number) => (
-                <div  className="keyboard-row" key={index}>
+                <div className="keyboard-row" key={index}>
+                    {index === 2 && <span className="keyboard-spacer"></span>}
                     {row.toUpperCase().split('').map((key: string) => (
                         <button key={key} className=""
                             onClick={() => handleGuess(key)}
                             disabled={guessedLetters.includes(key)}>{key}</button>
                     ))}
+                    {index === 2 && <span className="keyboard-spacer"></span>}
                 </div>
             ))}
         </div>

@@ -114,3 +114,19 @@ body {
         xs:text-base
         md:text-lg
 }
+
+.keyboard-spacer {
+    @apply
+        font-bold
+        h-12
+        cursor-pointer
+        flex-grow
+        uppercase
+        mr-1
+        rounded-md
+        select-none
+        disabled:bg-slate-300
+        text-sm
+        xs:text-base
+        md:text-lg
+}
