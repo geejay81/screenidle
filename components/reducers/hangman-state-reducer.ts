@@ -2,7 +2,7 @@
 
 import { GameTypes } from "@/types/GameTypes";
 import { Movie } from "@/types/Movie"
-import { getGameState, setHangmanGameState } from "../client-lib/state-manager";
+import { getGameState, setHangmanGameState, setHistoryState } from "../client-lib/state-manager";
 
 export interface hangmanState {
     gameId: number;
@@ -21,6 +21,7 @@ interface hangmanStateInitialiserProps {
 }
 
 export const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const initialLives = 6;
 
 const calculateGameMode = (movie: Movie, guessedLetters: string[], wrongGuesses: string[]) => {
     const initialLives = 6;
@@ -84,23 +85,26 @@ export const hangmanStateReducer = (state: hangmanState, action: any): hangmanSt
                 ? [...state.wrongGuesses, guess]
                 : [...state.wrongGuesses];
 
+            const gameMode = calculateGameMode(state.movie, guessedLetters, wrongGuesses);
+
             const newState = {
                 ...state,
                 guessedLetters,
                 wrongGuesses,
-                gameMode: calculateGameMode(state.movie, guessedLetters, wrongGuesses)
+                gameMode
             };
 
             if (state.isDailyGame) {
 
-                // update guessedLetters and wrongGuesses to localStorage
                 setHangmanGameState(state.gameId, guessedLetters, wrongGuesses, state.gameType);
 
-                // if game is over, update game history to localStorage
-
+                if (gameMode === 'won' || gameMode === 'lost') {
+                    setHistoryState(gameMode, wrongGuesses, state.gameId, state.gameType);
+                }
             }
 
             return newState;
+            
         default: return state;
     }
 }

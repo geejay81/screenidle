@@ -7,8 +7,7 @@ import Keyboard from "./Keyboard"
 import LifeBar from "./LifeBar"
 import { headings } from "@/ui/fonts"
 import { GameTypes } from "@/types/GameTypes"
-import { getGameState, setHangmanGameState } from "../client-lib/state-manager"
-import { alphabet, hangmanState, hangmanStateInitialiser, hangmanStateReducer } from "../reducers/hangman-state-reducer"
+import { alphabet, hangmanStateInitialiser, hangmanStateReducer, initialLives } from "../reducers/hangman-state-reducer"
 
 interface HangmanPuzzleProps {
     movie: Movie,
@@ -31,29 +30,8 @@ interface PosterImageProps {
 }
 
 export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) {
-    // const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-    // const [wrongGuesses, setWrongGuesses] = useState<string[]>([]);
-
+    
     const [state, dispatch] = useReducer(hangmanStateReducer, { movie, gameType: GameTypes.MovieHangman, isDailyGame }, hangmanStateInitialiser);
-    
-    const initialLives = 6;
-    // const livesRemaining = initialLives - state.wrongGuesses.length;
-    
-    // let gameMode = 'play';
-
-    // if (livesRemaining === 0) {
-    //     gameMode = 'lost';
-    // }
-
-    // let answer = '';
-    
-    // movie.title.toUpperCase().split('').map((letter, index) => {
-    //     answer += !state.guessedLetters.includes(letter) && alphabet.indexOf(letter) > -1 ? '_' : letter
-    // })
-
-    // if (answer === movie.title.toUpperCase()) {
-    //     gameMode = 'won';
-    // }
     
     const handleGuess = (letter: string) => {
         dispatch({ type: 'GUESS_LETTER', payload: letter});
