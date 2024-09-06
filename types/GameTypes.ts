@@ -1,4 +1,5 @@
 export enum GameTypes {
     Poster = 'poster',
-    Tagline = 'tagline'
+    Tagline = 'tagline',
+    MovieHangman = 'movie-hangman'
 }

@@ -2,12 +2,14 @@
 
 import { GameTypes } from "@/types/GameTypes";
 import { Guess } from "@/types/Guess";
+import { HangmanState } from "@/types/HangmanState";
 import { HistoryState, IGuessHistory, IHistoryState } from "@/types/History";
 import { State } from "@/types/State";
 
 const getGameStateKey = (gameType: GameTypes) => {
   switch (gameType) {
     case GameTypes.Tagline: return 'streetidle-taglines-state'
+    case GameTypes.MovieHangman: return 'screenidle-movie-hangman-state'
     default: return 'streetidle-movie-state';
   }
 }
@@ -15,27 +17,44 @@ const getGameStateKey = (gameType: GameTypes) => {
 const getHistoryStateKey = (gameType: GameTypes) => {
   switch (gameType) {
     case GameTypes.Tagline: return 'streetidle-taglines-history';
+    case GameTypes.MovieHangman: return 'screenidle-movie-hangman-history';
     default: return 'streetidle-history';
   }
 }
 
 export function setGameState(gameId: number, guesses: Guess[], gameType: GameTypes): void {
-    if (typeof window !== "undefined" && window.localStorage) {
+  if (typeof window !== "undefined" && window.localStorage) {
 
-      const gameStateKey = getGameStateKey(gameType);
+    const gameStateKey = getGameStateKey(gameType);
 
-      let state = new State();
-      state.puzzleNumber = gameId;
-      state.guesses = guesses;
-      localStorage.setItem(gameStateKey, JSON.stringify(state));
-    }
+    let state = new State();
+    state.puzzleNumber = gameId;
+    state.guesses = guesses;
+    localStorage.setItem(gameStateKey, JSON.stringify(state));
   }
+}
 
-export function setHistoryState(gameResult: string, guesses: Guess[], gameId: number, gameType: GameTypes) {
+export function setHangmanGameState(gameId: number, guessedLetters: string[], wrongGuesses: string[], gameType: GameTypes): void {
+  if (typeof window !== "undefined" && window.localStorage) {
+
+    const gameStateKey = getGameStateKey(gameType);
+
+    let state = new HangmanState();
+    state.puzzleNumber = gameId;
+    state.guessedLetters = guessedLetters;
+    state.wrongGuesses = wrongGuesses;
+    localStorage.setItem(gameStateKey, JSON.stringify(state));
+  }
+}
+
+export function setHistoryState(gameResult: string, guesses: Guess[] | string[], gameId: number, gameType: GameTypes) {
   
   if (typeof window !== "undefined" && window.localStorage) {  
 
     const historyStateKey = getHistoryStateKey(gameType);
+    const guessesOrLivesLeft = gameType === GameTypes.MovieHangman
+      ? 6 - guesses.length
+      : guesses.length;
 
     let currentHistory: IHistoryState = getHistoryState(gameType);
     currentHistory.gamesPlayed = currentHistory.gamesPlayed + 1;
@@ -53,7 +72,7 @@ export function setHistoryState(gameResult: string, guesses: Guess[], gameId: nu
       ? currentHistory.currentStreak
       : currentHistory.maxStreak;
     if (gameResult === 'won') {
-      switch (guesses.length) {
+      switch (guessesOrLivesLeft) {
         case 1:
           currentHistory.guesses.one = currentHistory.guesses.one + 1;
           break;
@@ -76,13 +95,13 @@ export function setHistoryState(gameResult: string, guesses: Guess[], gameId: nu
     } else {
       currentHistory.guesses.fail = currentHistory.guesses.fail + 1;
     }
-    currentHistory.averageGuesses = calculateAverageGuesses(currentHistory.guesses, currentHistory.gamesPlayed);
+    currentHistory.averageGuesses = calculateAverageGuesses(currentHistory.guesses, currentHistory.gamesPlayed, gameType);
     currentHistory.previousGame = gameId;
     localStorage.setItem(historyStateKey, JSON.stringify(currentHistory));
   }
 }
 
-function calculateAverageGuesses(guesses: IGuessHistory, gamesPlayed: number): number {
+function calculateAverageGuesses(guesses: IGuessHistory, gamesPlayed: number, gameType: GameTypes): number {
     const totalGuesses = 
       (guesses.one * 1) +
       (guesses.two * 2) +
@@ -90,7 +109,7 @@ function calculateAverageGuesses(guesses: IGuessHistory, gamesPlayed: number): n
       (guesses.four * 4) +
       (guesses.five * 5) +
       (guesses.six * 6) +
-      (guesses.fail * 6);
+      (guesses.fail * (gameType === GameTypes.MovieHangman ? 0 : 6));
 
     return Number((totalGuesses / gamesPlayed).toPrecision(3));
   }
@@ -107,11 +126,22 @@ export function getHistoryState(gameType: GameTypes) {
 }
 
 export function getGameState(gameType: GameTypes) {
+  // TODO: if adding additional hangman type games, this will need to be updated.
   if (typeof window !== "undefined" && window.localStorage) {
     const gameStateKey = getGameStateKey(gameType);
     const existingState = localStorage.getItem(gameStateKey);
-    if (existingState !== null) 
-      return Object.assign(new State(), JSON.parse(existingState));
-    return new State();
+    if (existingState !== null) {
+
+      console.log(existingState);
+
+      return gameType === GameTypes.MovieHangman
+        ? Object.assign(new HangmanState(), JSON.parse(existingState))
+        : Object.assign(new State(), JSON.parse(existingState));
+    }
+      
+
+    return gameType === GameTypes.MovieHangman
+      ? new HangmanState()
+      : new State();
   }
 }

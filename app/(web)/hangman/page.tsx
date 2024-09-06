@@ -22,7 +22,7 @@ export default async function PostersPage() {
         <Header title={title} />
         <main className="grow">
           <div className="max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
-            <HangmanPuzzle movie={movie} />
+            <HangmanPuzzle movie={movie} isDailyGame={true} />
           </div>
         </main>
       </>

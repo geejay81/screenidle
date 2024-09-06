@@ -2,13 +2,17 @@
 
 import { Movie } from "@/types/Movie"
 import HangmanBoard from "./HangmanBoard"
-import { useState } from "react"
+import { useReducer } from "react"
 import Keyboard from "./Keyboard"
 import LifeBar from "./LifeBar"
 import { headings } from "@/ui/fonts"
+import { GameTypes } from "@/types/GameTypes"
+import { getGameState, setHangmanGameState } from "../client-lib/state-manager"
+import { alphabet, hangmanState, hangmanStateInitialiser, hangmanStateReducer } from "../reducers/hangman-state-reducer"
 
 interface HangmanPuzzleProps {
-    movie: Movie
+    movie: Movie,
+    isDailyGame: boolean
 }
 
 interface ResultMessageProps {
@@ -26,48 +30,40 @@ interface PosterImageProps {
     alt: string
 }
 
-export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
-    const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-    const [wrongGuesses, setWrongGuesses] = useState<string[]>([]);
+export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) {
+    // const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+    // const [wrongGuesses, setWrongGuesses] = useState<string[]>([]);
 
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const [state, dispatch] = useReducer(hangmanStateReducer, { movie, gameType: GameTypes.MovieHangman, isDailyGame }, hangmanStateInitialiser);
+    
     const initialLives = 6;
-    const livesRemaining = initialLives - wrongGuesses.length;
+    // const livesRemaining = initialLives - state.wrongGuesses.length;
     
-    let gameMode = 'play';
+    // let gameMode = 'play';
 
-    if (livesRemaining === 0) {
-        gameMode = 'lost';
-    }
+    // if (livesRemaining === 0) {
+    //     gameMode = 'lost';
+    // }
 
-    let answer = '';
+    // let answer = '';
     
-    movie.title.toUpperCase().split('').map((letter, index) => {
-        answer += !guessedLetters.includes(letter) && alphabet.indexOf(letter) > -1 ? '_' : letter
-    })
+    // movie.title.toUpperCase().split('').map((letter, index) => {
+    //     answer += !state.guessedLetters.includes(letter) && alphabet.indexOf(letter) > -1 ? '_' : letter
+    // })
 
-    if (answer === movie.title.toUpperCase()) {
-        gameMode = 'won';
-    }
+    // if (answer === movie.title.toUpperCase()) {
+    //     gameMode = 'won';
+    // }
     
     const handleGuess = (letter: string) => {
-
-        if (movie.title.toUpperCase().indexOf(letter) === -1) {
-            setWrongGuesses((prevWrongGuesses: string[]) => {
-                return [...prevWrongGuesses, letter]
-            })
-        }
-
-        setGuessedLetters((previosGuessedLetters: string[]) => {
-            return [...previosGuessedLetters, letter];
-        })
+        dispatch({ type: 'GUESS_LETTER', payload: letter});
     }
 
     const PlayMode = () => (
         <div className="space-y-8">
-            <HangmanBoard answer={movie.title} guessedLetters={guessedLetters} alphabet={alphabet} />
-            <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} />
-            <Keyboard handleGuess={handleGuess} guessedLetters={guessedLetters} />
+            <HangmanBoard answer={movie.title} guessedLetters={state.guessedLetters} alphabet={alphabet} />
+            <LifeBar lives={initialLives} livesUsed={state.wrongGuesses.length} />
+            <Keyboard handleGuess={handleGuess} guessedLetters={state.guessedLetters} />
         </div>
     )
 
@@ -94,7 +90,7 @@ export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
                     <PosterImage imageUrl={movie.poster} alt={`${movie.title} poster`} />
                 </div>
                 <div className="space-y-4 mt-0">
-                    <LifeBar lives={initialLives} livesUsed={wrongGuesses.length} color="danger" />
+                    <LifeBar lives={initialLives} livesUsed={state.wrongGuesses.length} color="danger" />
                     {children}
                 </div>
                 <div>
@@ -104,7 +100,7 @@ export default function HangmanPuzzle({movie}: HangmanPuzzleProps) {
         )
     }
 
-    switch (gameMode) {
+    switch (state.gameMode) {
         case 'won': return <WonMode />
         case 'lost': return <LostMode />
         default: return <PlayMode />
