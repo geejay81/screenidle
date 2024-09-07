@@ -1,6 +1,6 @@
 import HangmanPuzzle from "@/components/client-apps/HangmanPuzzle";
 import Header from "@/components/page/Header";
-import { getCurrentMovie } from "@/data/movies";
+import { getCurrentMovie, getCurrentMovieHangmanMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -12,8 +12,7 @@ const pageUrl = `${process.env.BASE_URL}hangman`;
 export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function PostersPage() {
-    // TODO: create a specific method to get the hangman movie
-    const movie = await getCurrentMovie();
+    const movie = await getCurrentMovieHangmanMovie();
 
     if (!movie) return notFound();
   

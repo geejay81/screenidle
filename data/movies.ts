@@ -3,6 +3,7 @@ import clientConfig from "./config/client-config";
 import gameConfig from "./config/game-config";
 import { Movie } from "@/types/Movie";
 import taglines from '@/data/taglines.json';
+import { hangmanMoviesIds } from './hangman-movies';
 
 const currentPuzzleId = () => {    
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -14,6 +15,13 @@ const currentPuzzleId = () => {
 const currentTaglinePuzzleId = () => {    
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
     const startDate = new Date(process.env.TAGLINE_START_DATE ?? '2024-07-22');
+    const today = new Date();
+    return Math.floor((today.getTime() - startDate.getTime()) / _MS_PER_DAY) + 1;
+}
+
+const currentMovieHangmanPuzzleId = () => {    
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const startDate = new Date(process.env.MOVIE_HANGMAN_START_DATE ?? '2024-09-07');
     const today = new Date();
     return Math.floor((today.getTime() - startDate.getTime()) / _MS_PER_DAY) + 1;
 }
@@ -42,6 +50,12 @@ export async function getCurrentTaglineMovie() {
     const currentPuzzleDate = currentTaglinePuzzleId();
 
     return await getTaglineMovie(currentPuzzleDate);
+}
+
+export async function getCurrentMovieHangmanMovie() {
+    const currentPuzzleDate = currentMovieHangmanPuzzleId();
+
+    return await getMovieHangmanMovie(currentPuzzleDate);
 }
 
 export async function getMovie(gameId: number) {
@@ -78,9 +92,33 @@ export async function getTaglineMovie(gameId: number) {
     return result;
 }
 
+export async function getMovieHangmanMovie(gameId: number) {
+
+    const currentPuzzleDate = currentMovieHangmanPuzzleId();
+
+    if (gameId > currentPuzzleDate) return null;
+
+    const _id = hangmanMoviesIds[currentPuzzleDate - 1];
+
+    const alMovies = await getAllMovies();
+
+    const selectedMovies =  alMovies.filter((movie: Movie) => movie._id == _id);
+
+    if (selectedMovies === null || selectedMovies.length === 0) return null;
+
+    var result = {...selectedMovies[0], gameId}
+
+    return result;
+}
+
 export async function getCurrentTaglinePuzzleNumber() {
 
     return currentTaglinePuzzleId();
+}
+
+export async function getCurrentMovieHangmanPuzzleNumber() {
+
+    return currentMovieHangmanPuzzleId();
 }
 
 export async function getHistoricalMovies() {
