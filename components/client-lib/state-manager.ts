@@ -9,7 +9,7 @@ import { State } from "@/types/State";
 const getGameStateKey = (gameType: GameTypes) => {
   switch (gameType) {
     case GameTypes.Tagline: return 'streetidle-taglines-state'
-    case GameTypes.MovieHangman: return 'screenidle-movie-hangman-state'
+    case GameTypes.MovieHangman: return 'screenidle-movie-blanks-state'
     default: return 'streetidle-movie-state';
   }
 }
@@ -17,7 +17,7 @@ const getGameStateKey = (gameType: GameTypes) => {
 const getHistoryStateKey = (gameType: GameTypes) => {
   switch (gameType) {
     case GameTypes.Tagline: return 'streetidle-taglines-history';
-    case GameTypes.MovieHangman: return 'screenidle-movie-hangman-history';
+    case GameTypes.MovieHangman: return 'screenidle-movie-blanks-history';
     default: return 'streetidle-history';
   }
 }

@@ -1,17 +1,17 @@
 import HangmanPuzzle from "@/components/client-apps/HangmanPuzzle";
 import Header from "@/components/page/Header";
-import { getCurrentMovie, getCurrentMovieHangmanMovie } from "@/data/movies";
+import { getCurrentMovieHangmanMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-const title = "Movie title hangman";
-const description = "Can you find the movie title?";
-const pageUrl = `${process.env.BASE_URL}hangman`;
+const title = "Movie title blank buster";
+const description = "Fill the blanks in the movie title?";
+const pageUrl = `${process.env.BASE_URL}blank-buster`;
 
 export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
-export default async function PostersPage() {
+export default async function FillThePage() {
     const movie = await getCurrentMovieHangmanMovie();
 
     if (!movie) return notFound();

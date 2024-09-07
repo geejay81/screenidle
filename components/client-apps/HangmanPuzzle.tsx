@@ -45,8 +45,8 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
 
         const url = window.location.href;
         const livesRemaining = 6 - (state.wrongGuesses.length ?? 0);
-        const text = `ScreenIdle Movie Title Hangman #${movie.gameId} ${livesRemaining}/6 lives remaining`;
-        const hashtags = `#ScreenIdle #FilmTwitter #Framed @screenidlegame #Hangman`;
+        const text = `ScreenIdle Movie Title Blank Buster #${movie.gameId} ${livesRemaining}/6 lives remaining`;
+        const hashtags = `#ScreenIdle #FilmTwitter #Framed @screenidlegame`;
         const resultEmojiBoard = createShareableLivesBoard(state.wrongGuesses, initialLives);
 
         const textToShare = `${text}\n\n${resultEmojiBoard}\n\n${hashtags}`;
