@@ -6,6 +6,8 @@ const nearlyBox = '🟨'
 const skippedBox = '🟥';
 const blankBox = '⬜';
 const clapper = '🎬';
+const greenHeart = '💚';
+const brokenHeart = '❌';
 
 export const shareContent = (shareData: ShareData) => {
 
@@ -57,4 +59,20 @@ export const createShareablePuzzzleBoard = (guesses: Guess[]) => {
     }
 
     return result;
+}
+
+export const createShareableLivesBoard = (wrongGuesses: string[], initialLives: number) => {
+  let result = `${clapper}`;
+  const livesLost = wrongGuesses.length;
+  const livesRemaining = initialLives - livesLost;
+
+  for (let i = 0; i < livesRemaining; i++) {
+    result += greenHeart;
+  }
+
+  for (let i = 0; i < livesLost; i++) {
+    result += brokenHeart;
+  }
+
+  return result;
 }

@@ -10,7 +10,7 @@ import { GameTypes } from "@/types/GameTypes"
 import { alphabet, hangmanStateInitialiser, hangmanStateReducer, initialLives } from "../reducers/hangman-state-reducer"
 import GameHistory from "./GameHistory"
 import { FaShareNodes } from "react-icons/fa6"
-import { shareContent } from "../client-lib/social-sharer"
+import { createShareableLivesBoard, shareContent } from "../client-lib/social-sharer"
 
 interface HangmanPuzzleProps {
     movie: Movie,
@@ -42,14 +42,12 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
     }
 
     const handleShare = () => {
-        //e.persist();
 
-        // TODO: add emojis
         const url = window.location.href;
         const livesRemaining = 6 - (state.wrongGuesses.length ?? 0);
-        const text = `ScreenIdle Movie Hangman #${movie.gameId} ${livesRemaining}/6 lives remaining`;
+        const text = `ScreenIdle Movie Title Hangman #${movie.gameId} ${livesRemaining}/6 lives remaining`;
         const hashtags = `#ScreenIdle #FilmTwitter #Framed @screenidlegame #Hangman`;
-        const resultEmojiBoard = ''; //createShareablePuzzzleBoard(state.guesses);
+        const resultEmojiBoard = createShareableLivesBoard(state.wrongGuesses, initialLives);
 
         const textToShare = `${text}\n\n${resultEmojiBoard}\n\n${hashtags}`;
 
