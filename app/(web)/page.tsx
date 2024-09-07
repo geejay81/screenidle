@@ -26,7 +26,6 @@ export default async function Home() {
             <span>Play Today&apos;s Movie Blank Buster</span>
           </Link>
         </div>
-        
       </div>
     </main>
   );

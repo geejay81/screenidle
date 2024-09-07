@@ -17,6 +17,8 @@ export async function GET(request: NextRequest) {
         revalidatePath('/(web)/posters/history', 'page');
         revalidatePath('/(web)/taglines', 'page');
         revalidatePath('/(web)/taglines/history', 'page');
+        revalidatePath('/(web)/blank-buster', 'page');
+        revalidatePath('/(web)/blank-buster/history', 'page');
         return NextResponse.json({ revalidated: true, now: Date.now() });
 
     } catch (err) {

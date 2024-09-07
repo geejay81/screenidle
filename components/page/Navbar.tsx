@@ -33,6 +33,11 @@ const navLinks = [
         "icon": <FaUnderline className="inline" />
     },
     {
+        "url": "/blank-buster/history",
+        "title": "Movie blank buster game history",
+        "icon": <FaCalendar className="inline" />
+    },
+    {
         "url": "/games",
         "title": "More games",
         "icon": <FaGamepad className="inline" />
@@ -86,29 +91,3 @@ export default function Navbar() {
         </nav>
     )
 }
-
-/*
-<nav className="container mx-auto max-w-5xl flex items-center justify-between p-4 px-8">
-                <div className="text-2xl md:text-3xl">
-                    <Link href="/" className={`${logo.className} space-x-1`}>
-                        <FaRecordVinyl className="inline" />
-                        <span>{gameConfig.gameTitle}</span>
-                    </Link>
-                </div>
-                <div className="space-x-5">
-                    {navLinks &&
-                        navLinks
-                            .map((link: any) => (
-                            <Link 
-                                key={link.url} 
-                                href={link.url} 
-                                className="inline-flex flex-row items-center space-x-2"
-                                title={link.title}>
-                                {link.icon}
-                                <span className="sr-only md:not-sr-only">{link.title}</span>
-                            </Link>
-                        ))
-                    }
-                </div> 
-            </nav>
-*/
