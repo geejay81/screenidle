@@ -1,6 +1,6 @@
 import { headings, logo } from "@/ui/fonts";
 import Link from "next/link";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft, FaUnderline } from "react-icons/fa";
 import { FaClapperboard, FaPlay } from "react-icons/fa6";
 
 export default async function Home() {
@@ -20,6 +20,10 @@ export default async function Home() {
           <Link href="/taglines" className={`home-cta ${headings.className} m-4`}>
             <FaQuoteLeft className="inline" />
             <span>Play Today&apos;s Movie Tagline Game</span>
+          </Link>
+          <Link href="/blank-buster" className={`home-cta ${headings.className} m-4`}>
+            <FaUnderline className="inline" />
+            <span>Play Today&apos;s Movie Blank Buster</span>
           </Link>
         </div>
         

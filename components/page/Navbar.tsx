@@ -3,7 +3,7 @@
 import { headings } from "@/ui/fonts";
 import Link from "next/link";
 import { useState } from "react";
-import { FaCalendar, FaFilm, FaGamepad, FaQuoteLeft } from "react-icons/fa";
+import { FaCalendar, FaFilm, FaGamepad, FaQuoteLeft, FaUnderline } from "react-icons/fa";
 import { FaClapperboard } from "react-icons/fa6";
 
 const navLinks = [
@@ -26,6 +26,11 @@ const navLinks = [
         "url": "/taglines/history",
         "title": "Tagline game history",
         "icon": <FaCalendar className="inline" />
+    },
+    {
+        "url": "/blank-buster",
+        "title": "Today's movie blank buster",
+        "icon": <FaUnderline className="inline" />
     },
     {
         "url": "/games",
