@@ -9,6 +9,8 @@ import { headings } from "@/ui/fonts"
 import { GameTypes } from "@/types/GameTypes"
 import { alphabet, hangmanStateInitialiser, hangmanStateReducer, initialLives } from "../reducers/hangman-state-reducer"
 import GameHistory from "./GameHistory"
+import { FaShareNodes } from "react-icons/fa6"
+import { shareContent } from "../client-lib/social-sharer"
 
 interface HangmanPuzzleProps {
     movie: Movie,
@@ -19,6 +21,7 @@ interface ResultMessageProps {
     heading: string;
     bgColor: string;
     children: React.ReactNode;
+    handleShare: () => void;
 }
 
 interface ResultModeProps {
@@ -38,6 +41,27 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
         dispatch({ type: 'GUESS_LETTER', payload: letter});
     }
 
+    const handleShare = () => {
+        //e.persist();
+
+        // TODO: add emojis
+        const url = window.location.href;
+        const livesRemaining = 6 - (state.wrongGuesses.length ?? 0);
+        const text = `ScreenIdle Movie Hangman #${movie.gameId} ${livesRemaining}/6 lives remaining`;
+        const hashtags = `#ScreenIdle #FilmTwitter #Framed @screenidlegame #Hangman`;
+        const resultEmojiBoard = ''; //createShareablePuzzzleBoard(state.guesses);
+
+        const textToShare = `${text}\n\n${resultEmojiBoard}\n\n${hashtags}`;
+
+        const shareData: ShareData = {
+            title: 'ScreenIdle',
+            text: textToShare,
+            url: url
+        };
+
+        shareContent(shareData);
+    }
+
     const PlayMode = () => (
         <div className="space-y-8">
             <HangmanBoard answer={movie.title} guessedLetters={state.guessedLetters} alphabet={alphabet} />
@@ -48,7 +72,7 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
 
     const LostMode = () => (
         <ResultMode>
-            <ResultMessage heading="Game Over!" bgColor="bg-screenidle-danger">
+            <ResultMessage heading="Game Over!" bgColor="bg-screenidle-danger" handleShare={handleShare}>
                 <p>Bad luck. The answer to this puzzle was <span className="font-bold">{movie.title}</span>.</p>
             </ResultMessage>
             {state.isDailyGame && <GameHistory gameType={GameTypes.MovieHangman} />}
@@ -57,7 +81,7 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
 
     const WonMode = () => (
         <ResultMode>
-            <ResultMessage heading="Winner!" bgColor="bg-screenidle-success">
+            <ResultMessage heading="Winner!" bgColor="bg-screenidle-success" handleShare={handleShare}>
                 <p>Congatulations! You knew that the answer was <span className="font-bold">{movie.title}</span>.</p>
             </ResultMessage>
             {state.isDailyGame && <GameHistory gameType={GameTypes.MovieHangman} />}
@@ -89,11 +113,16 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
     }
 }
 
-const ResultMessage = ({heading, bgColor, children} : ResultMessageProps) => {
+const ResultMessage = ({heading, bgColor, children, handleShare} : ResultMessageProps) => {
     return (
         <div className={`${bgColor} text-screenidle-link space-y-4 p-4 rounded-md`} role="alert">
             <h2 className={`font-bold text-2xl ${headings.className}`}>{heading}</h2>
             {children}
+            <button
+                className={`${bgColor} text-xl text-screenidle-link border-2 border-screenidle-link p-4 rounded-lg w-full flex flex-row space-x-2 items-center justify-center ${headings.className}`}
+                type="button" onClick={handleShare}>
+                    <FaShareNodes className="inline" /><span>Share result</span>
+            </button>
         </div>
     )
 }
