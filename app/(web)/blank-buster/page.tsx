@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 const title = "Movie title blank buster";
-const description = "Fill the blanks in the movie title?";
+const description = "Fill the blanks in the movie title";
 const pageUrl = `${process.env.BASE_URL}blank-buster`;
 
 export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
