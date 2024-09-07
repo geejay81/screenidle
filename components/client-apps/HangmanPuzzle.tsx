@@ -79,9 +79,10 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
     }
 
     switch (state.gameMode) {
+        case 'play': return <PlayMode />
         case 'won': return <WonMode />
         case 'lost': return <LostMode />
-        default: return <PlayMode />
+        default: return <p>Loading ...</p>
     }
 }
 

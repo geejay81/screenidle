@@ -5,7 +5,7 @@ import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-const title = "Find the movie title [BETA]";
+const title = "Movie title hangman";
 const description = "Can you find the movie title?";
 const pageUrl = `${process.env.BASE_URL}hangman`;
 
