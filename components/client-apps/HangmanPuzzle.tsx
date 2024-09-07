@@ -11,6 +11,7 @@ import { alphabet, hangmanStateInitialiser, hangmanStateReducer, initialLives } 
 import GameHistory from "./GameHistory"
 import { FaShareNodes } from "react-icons/fa6"
 import { createShareableLivesBoard, shareContent } from "../client-lib/social-sharer"
+import OtherGamesPromo from "./OtherGamesPromo"
 
 interface HangmanPuzzleProps {
     movie: Movie,
@@ -95,6 +96,7 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
                 <div className="space-y-4 mt-0">
                     <LifeBar lives={initialLives} livesUsed={state.wrongGuesses.length} color="danger" />
                     {children}
+                    <OtherGamesPromo currentGame="blank-buster" />
                 </div>
                 <div>
                     <p>Poster images provided by <a href="https://www.themoviedb.org" className="font-semibold">TMDB</a>.</p>

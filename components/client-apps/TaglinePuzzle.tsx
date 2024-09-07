@@ -12,6 +12,7 @@ import { FaPlay, FaShareNodes } from "react-icons/fa6"
 import GameHistory from "./GameHistory"
 import { GameTypes } from "@/types/GameTypes"
 import Link from "next/link"
+import OtherGamesPromo from "./OtherGamesPromo"
 
 type TaglinePuzzleProps = {
     movie: Movie,
@@ -69,13 +70,6 @@ export default function TaglinePuzzle({movie, isDailyGame}: TaglinePuzzleProps) 
         </>
     )
 
-    const OtherGame = () => (
-        <div className="w-full p-4 mb-4 bg-screenidle-warning text-screenidle-link space-y-4 rounded-lg">
-            <h2 className={`font-bold text-2xl ${headings.className}`}>More ScreenIdle</h2>
-            Can you guess the movie from the pixelated poster? <Link href={'/posters'} className="font-bold">Try now!</Link>
-        </div>
-    )
-
     const WonMode = () => (
         <>
             <div className="w-full p-4 mb-4 bg-screenidle-success text-screenidle-link space-y-4 rounded-lg">
@@ -88,7 +82,7 @@ export default function TaglinePuzzle({movie, isDailyGame}: TaglinePuzzleProps) 
                 </button>
             </div>
             {state.isDailyGame && <GameHistory gameType={state.gameType} />}
-            <OtherGame />
+            <OtherGamesPromo currentGame="taglines" />
         </>
     )
 
@@ -104,7 +98,7 @@ export default function TaglinePuzzle({movie, isDailyGame}: TaglinePuzzleProps) 
                 </button>
             </div>
             {state.isDailyGame && <GameHistory gameType={state.gameType} />}
-            <OtherGame />
+            <OtherGamesPromo currentGame="taglines" />
         </>
     )
 
