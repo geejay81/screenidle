@@ -8,6 +8,7 @@ import LifeBar from "./LifeBar"
 import { headings } from "@/ui/fonts"
 import { GameTypes } from "@/types/GameTypes"
 import { alphabet, hangmanStateInitialiser, hangmanStateReducer, initialLives } from "../reducers/hangman-state-reducer"
+import GameHistory from "./GameHistory"
 
 interface HangmanPuzzleProps {
     movie: Movie,
@@ -50,6 +51,7 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
             <ResultMessage heading="Game Over!" bgColor="bg-screenidle-danger">
                 <p>Bad luck. The answer to this puzzle was <span className="font-bold">{movie.title}</span>.</p>
             </ResultMessage>
+            {state.isDailyGame && <GameHistory gameType={GameTypes.MovieHangman} />}
         </ResultMode>
     )
 
@@ -58,6 +60,7 @@ export default function HangmanPuzzle({movie, isDailyGame}: HangmanPuzzleProps) 
             <ResultMessage heading="Winner!" bgColor="bg-screenidle-success">
                 <p>Congatulations! You knew that the answer was <span className="font-bold">{movie.title}</span>.</p>
             </ResultMessage>
+            {state.isDailyGame && <GameHistory gameType={GameTypes.MovieHangman} />}
         </ResultMode>
     )
 
