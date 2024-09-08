@@ -98,7 +98,7 @@ export async function getMovieHangmanMovie(gameId: number) {
 
     if (gameId > currentPuzzleDate) return null;
 
-    const _id = hangmanMoviesIds[currentPuzzleDate - 1];
+    const _id = hangmanMoviesIds[gameId - 1];
 
     const alMovies = await getAllMovies();
 
