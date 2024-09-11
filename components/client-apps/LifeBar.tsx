@@ -1,3 +1,5 @@
+"use client"
+
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 interface LifeBarProps {

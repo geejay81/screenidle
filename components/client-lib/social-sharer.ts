@@ -1,3 +1,5 @@
+"use client"
+
 import { Guess } from "@/types/Guess";
 
 const correctBox = '🟩';

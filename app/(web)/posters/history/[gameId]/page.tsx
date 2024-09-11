@@ -1,11 +1,10 @@
 import PosterPuzzle from "@/components/client-apps/PosterPuzzle";
 import Header from "@/components/page/Header";
-import { getMovie } from "@/data/movies";
+import { getHistoricalMovies, getMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
+import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-export const revalidate = 3600;
 
 type PostersIdPageProps = {
     params: { gameId: number }
@@ -18,6 +17,13 @@ export async function generateMetadata({ params }: PostersIdPageProps): Promise<
   const pageUrl = `${process.env.BASE_URL}/posters/${params.gameId}`;
 
   return getPageMetaData(title, description, pageUrl);
+}
+
+export async function generateStaticParams() {
+
+  const movies = await getHistoricalMovies();
+
+  return movies.map((movie: Movie) => { gameId: movie.gameId.toString() });
 }
 
 export default async function PostersIdPage({params}: PostersIdPageProps) {
