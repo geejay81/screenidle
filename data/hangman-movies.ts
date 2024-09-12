@@ -8,5 +8,10 @@ export const hangmanMoviesIds = [
     'MmQihS3cogDjOJECOdFLoM',
     'MmQihS3cogDjOJECOdFMoS',
     'MmQihS3cogDjOJECOdFOJb',
-    'MmQihS3cogDjOJECOdFOoe'
+    'MmQihS3cogDjOJECOdFOoe',
+    'MmQihS3cogDjOJECOdFWe8',
+    'MmQihS3cogDjOJECOdFft7',
+    'MmQihS3cogDjOJECOdFkiJ',
+    'MmQihS3cogDjOJECOdFnAj',
+    'MmQihS3cogDjOJECOdFnM1'
 ]
