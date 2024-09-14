@@ -23,6 +23,9 @@ export default function Footer() {
                 <a href="#" id="open_preferences_center" className="p-4" title="Manage cookies">
                     <FaCookie /><span className="sr-only">Manage cookies</span>
                 </a>
+                <a href="/privacy" className="p-4" title="Privacy">
+                    Privacy
+                </a>
             </div>
         </footer>
     )

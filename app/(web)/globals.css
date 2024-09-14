@@ -130,3 +130,28 @@ body {
         xs:text-base
         md:text-lg
 }
+
+.privacy {
+    max-width: 65ch;
+    @apply space-y-4;
+}
+
+.privacy h2 {
+    @apply text-2xl font-bold;
+}
+
+.privacy h3 {
+    @apply text-xl font-bold;
+}
+
+.privacy h4 {
+    @apply text-lg font-bold;
+}
+
+.privacy a {
+    @apply underline;
+}
+
+.privacy ul {
+    @apply space-y-4 list-disc list-inside;
+}
