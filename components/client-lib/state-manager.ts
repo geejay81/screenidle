@@ -131,14 +131,10 @@ export function getGameState(gameType: GameTypes) {
     const gameStateKey = getGameStateKey(gameType);
     const existingState = localStorage.getItem(gameStateKey);
     if (existingState !== null) {
-
-      console.log(existingState);
-
       return gameType === GameTypes.MovieHangman
         ? Object.assign(new HangmanState(), JSON.parse(existingState))
         : Object.assign(new State(), JSON.parse(existingState));
     }
-      
 
     return gameType === GameTypes.MovieHangman
       ? new HangmanState()
