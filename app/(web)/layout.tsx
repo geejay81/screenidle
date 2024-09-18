@@ -7,6 +7,7 @@ import Footer from "@/components/page/Footer";
 import getPageMetaData from "@/lib/getPageMetaData";
 import Script from "next/script";
 import Raptive from "@/components/page/Raptive";
+import AdBlockRecovery from "@/components/page/AdBlockRecovery";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "ScreenIdle";
@@ -24,11 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Raptive />
+      </head>
       <body className={`${inter.className}`}>
         <Navbar />
         {children}
         <Footer />
-        <Raptive />
+        <AdBlockRecovery />
         <Script src="/scripts/clarity.js" strategy="afterInteractive"></Script>
         <ConsentManagementPlatform GA_MEASUREMENT_ID={process.env.GTAG || ''} />
       </body>

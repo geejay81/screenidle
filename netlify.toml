@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/ads.txt"
+  to = "https://ads.adthrive.com/sites/66e44c7208809622c00c1bca/ads.txt"
+  status = 301
+  force = true
