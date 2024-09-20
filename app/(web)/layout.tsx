@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/page/Navbar";
-import ConsentManagementPlatform from "@/components/client-apps/ConsentManagementPlatform";
 import Footer from "@/components/page/Footer";
 import getPageMetaData from "@/lib/getPageMetaData";
 import Script from "next/script";
 import Raptive from "@/components/page/Raptive";
 import AdBlockRecovery from "@/components/page/AdBlockRecovery";
+import GoogleAnalytics from "@/components/page/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "ScreenIdle";
@@ -34,7 +34,7 @@ export default function RootLayout({
         <Footer />
         <AdBlockRecovery />
         <Script src="/scripts/clarity.js" strategy="afterInteractive"></Script>
-        <ConsentManagementPlatform GA_MEASUREMENT_ID={process.env.GTAG || ''} />
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GTAG || ''} />
       </body>
     </html>
   );

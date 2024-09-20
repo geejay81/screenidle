@@ -20,9 +20,9 @@ export default function Footer() {
                         {link.icon}<span className="sr-only">Visit ScreenIdle on {link.title}</span>
                     </Link>
                 ))}
-                <a href="#" id="open_preferences_center" className="p-4" title="Manage cookies">
+                {/* <a href="" onClick={"javascript:adthrive.cmd.push(adthrive.showPrivacyPreferences);"} id="open_preferences_center" className="p-4" title="Manage cookies">
                     <FaCookie /><span className="sr-only">Manage cookies</span>
-                </a>
+                </a> */}
                 <a href="/privacy" className="p-4" title="Privacy">
                     Privacy
                 </a>
