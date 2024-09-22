@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaCookie, FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
 
@@ -20,9 +20,6 @@ export default function Footer() {
                         {link.icon}<span className="sr-only">Visit ScreenIdle on {link.title}</span>
                     </Link>
                 ))}
-                {/* <a href="" onClick={"javascript:adthrive.cmd.push(adthrive.showPrivacyPreferences);"} id="open_preferences_center" className="p-4" title="Manage cookies">
-                    <FaCookie /><span className="sr-only">Manage cookies</span>
-                </a> */}
                 <a href="/privacy" className="p-4" title="Privacy">
                     Privacy
                 </a>
