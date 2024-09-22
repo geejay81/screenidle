@@ -63,7 +63,7 @@ body {
 }
 
 .home-container {
-    @apply container mx-auto max-w-screen-lg p-6 py-32 space-y-8 md:space-y-16 flex flex-col items-center justify-evenly;
+    @apply container mx-auto max-w-screen-lg p-6 py-20 space-y-8 md:space-y-16 flex flex-col items-center justify-evenly;
 }
 
 .home-header{
@@ -81,7 +81,7 @@ body {
 
 @media (min-width: 768px) {
     .pixelated-image-canvas {
-        max-height: 60vh;
+        max-height: 50vh;
         max-width: 40vh;
     }
 }
