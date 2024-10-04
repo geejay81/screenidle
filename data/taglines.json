@@ -467,11 +467,6 @@
       "tagline": "The mission is a man."
     },
     {
-      "_id": "IeHNZqX3OUzK1APT6nfS1S",
-      "title": "This Island Earth",
-      "tagline": "Two mortals trapped in outer space... challenging the unearthly furies of an outlaw planet gone mad!"
-    },
-    {
       "_id": "IeHNZqX3OUzK1APT6nfS6B",
       "title": "Enemy at the Gates",
       "tagline": "A single bullet can change history."
@@ -502,46 +497,29 @@
       
     },
     {
-      "_id": "IeHNZqX3OUzK1APT6nfWMp",
-      "title": "Cinderella Man",
-      "tagline": "One man's extraordinary fight to save the family he loved."
-      
-    },
-    {
       "_id": "IeHNZqX3OUzK1APT6nfXQz",
       "title": "Gremlins",
       "tagline": "Cute. Clever. Mischievous. Intelligent. Dangerous."
-      
     },
     {
       "_id": "IeHNZqX3OUzK1APT6nfYQQ",
       "title": "Galaxy Quest",
       "tagline": "A comedy of Galactic Proportions."
-      
     },
     {
       "_id": "IeHNZqX3OUzK1APT6nfYeb",
       "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
       "tagline": "The hot-line suspense comedy."
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEg6s",
       "title": "American Beauty",
       "tagline": "Look closer."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEgCW",
-      "title": "Metropolis",
-      "tagline": "There can be no understanding between the hands and the brain unless the heart acts as mediator."
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEgsr",
       "title": "Jarhead",
       "tagline": "Welcome to the suck."
-      
     },
     {
       "_id": "IeHNZqX3OUzK1APT6nfHH7",
@@ -552,150 +530,31 @@
       "_id": "MmQihS3cogDjOJECOdEh6y",
       "title": "Unforgiven",
       "tagline": "Some legends will never be forgotten. Some wrongs can never be forgiven."
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEheq",
       "title": "Eternal Sunshine of the Spotless Mind",
       "tagline": "You can erase someone from your mind. Getting them out of your heart is another story."
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEhsx",
       "title": "8 Mile",
       "tagline": "Every moment is another chance"
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEiCi",
       "title": "Million Dollar Baby",
       "tagline": "Beyond his silence, there is a past. Beyond her dreams, there is a feeling. Beyond hope, there is a memory. Beyond their journey, there is a love."
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEiLB",
       "title": "Mars Attacks!",
       "tagline": "Nice planet. We'll take it!"
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEiZI",
       "title": "American History X",
       "tagline": "Some Legacies Must End."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEiyh",
-      "title": "Miami Vice",
-      "tagline": "No Law. No Rules. No Order."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEj7A",
-      "title": "Open Water",
-      "tagline": "Scream all you want."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEjIS",
-      "title": "Indiana Jones and the Temple of Doom",
-      "tagline": "If adventure has a name... it must be Indiana Jones."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEmcV",
-      "title": "Run Lola Run",
-      "tagline": "Every second of every day you're faced with a decision that can change your life."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEmfK",
-      "title": "Snatch",
-      "tagline": "Stealin' stones and breakin' bones."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEnG1",
-      "title": "Predator",
-      "tagline": "Soon the hunt will begin."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEnRJ",
-      "title": "Scarface",
-      "tagline": "He loved the American Dream. With a vengeance."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEnfQ",
-      "title": "Charlie and the Chocolate Factory",
-      "tagline": "Prepare for a taste of adventure."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEowS",
-      "title": "The Lord of the Rings: The Fellowship of the Ring",
-      "tagline": "Fate has chosen him. A fellowship will protect him . Evil will hunt them.."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEp26",
-      "title": "The Lord of the Rings",
-      "tagline": "Fantasy...beyond your imagination"
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEq51",
-      "title": "Freaks",
-      "tagline": "Can a full grown woman truly love a midget?"
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEqGJ",
-      "title": "Dracula",
-      "tagline": "The story of the strangest passion the world has ever known!"
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEqRb",
-      "title": "Brokeback Mountain",
-      "tagline": "Love is a force of nature"
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdErAl",
-      "title": "Donnie Darko",
-      "tagline": "YOU CAN NEVER GO TOO FAR."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdErOs",
-      "title": "Star Trek III: The Search for Spock",
-      "tagline": "A dying planet. A fight for life. The search for Spock."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdErRh",
-      "title": "Lost in Translation",
-      "tagline": "Everyone wants to be found."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdErcz",
-      "title": "Star Trek II: The Wrath of Khan",
-      "tagline": "At the end of the universe lies the beginning of vengeance."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdErid",
-      "title": "The Dark Knight",
-      "tagline": "Welcome to a world without rules."
-      
-    },
-    {
-      "_id": "MmQihS3cogDjOJECOdEsM9",
-      "title": "Ocean's Eleven",
-      "tagline": "Are you in or out?"
       
     },
     {
@@ -705,16 +564,95 @@
       
     },
     {
+      "_id": "MmQihS3cogDjOJECOdEj7A",
+      "title": "Open Water",
+      "tagline": "Scream all you want."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEjIS",
+      "title": "Indiana Jones and the Temple of Doom",
+      "tagline": "If adventure has a name... it must be Indiana Jones."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEmcV",
+      "title": "Run Lola Run",
+      "tagline": "Every second of every day you're faced with a decision that can change your life."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEmfK",
+      "title": "Snatch",
+      "tagline": "Stealin' stones and breakin' bones."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEnG1",
+      "title": "Predator",
+      "tagline": "Soon the hunt will begin."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEnRJ",
+      "title": "Scarface",
+      "tagline": "He loved the American Dream. With a vengeance."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEnfQ",
+      "title": "Charlie and the Chocolate Factory",
+      "tagline": "Prepare for a taste of adventure."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEowS",
+      "title": "The Lord of the Rings: The Fellowship of the Ring",
+      "tagline": "Fate has chosen him. A fellowship will protect him . Evil will hunt them.."
+      
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEqGJ",
+      "title": "Dracula",
+      "tagline": "The story of the strangest passion the world has ever known!"
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEqRb",
+      "title": "Brokeback Mountain",
+      "tagline": "Love is a force of nature"
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdErAl",
+      "title": "Donnie Darko",
+      "tagline": "YOU CAN NEVER GO TOO FAR."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdErOs",
+      "title": "Star Trek III: The Search for Spock",
+      "tagline": "A dying planet. A fight for life. The search for Spock."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdErRh",
+      "title": "Lost in Translation",
+      "tagline": "Everyone wants to be found."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdErcz",
+      "title": "Star Trek II: The Wrath of Khan",
+      "tagline": "At the end of the universe lies the beginning of vengeance."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdErid",
+      "title": "The Dark Knight",
+      "tagline": "Welcome to a world without rules."
+    },
+    {
+      "_id": "MmQihS3cogDjOJECOdEsM9",
+      "title": "Ocean's Eleven",
+      "tagline": "Are you in or out?"
+    },
+    {
       "_id": "MmQihS3cogDjOJECOdEslY",
       "title": "Edward Scissorhands",
       "tagline": "Innocence is what he knows. Beauty is what she sees."
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEvrU",
       "title": "Star Trek IV: The Voyage Home",
       "tagline": "Star date: 1986. How on Earth can they save the future?"
-      
     },
     {
       "_id": "MmQihS3cogDjOJECOdEw2m",
