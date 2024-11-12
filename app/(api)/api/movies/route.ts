@@ -1,7 +1,5 @@
 import { getAllMovies } from '@/data/movies'
 import { NextResponse } from 'next/server'
-
-export const revalidate = 3600;
  
 export async function GET(request: Request) {
 
