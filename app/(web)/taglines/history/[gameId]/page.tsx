@@ -29,8 +29,6 @@ export async function generateStaticParams() {
         result.push({ gameId: i.toString() });
     }
 
-    console.log(result);
-
     return result;
 }
 
