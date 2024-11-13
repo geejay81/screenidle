@@ -23,7 +23,13 @@ export async function generateStaticParams() {
 
   const movies = await getHistoricalMovies();
 
-  return movies.map((movie: Movie) => { gameId: movie.gameId.toString() });
+  const result = [];
+
+  for (let i = 0; i < movies.length; i++) {
+    result.push({ gameId: movies[i].gameId.toString() });
+  }
+  
+  return result;
 }
 
 export default async function PostersIdPage({params}: PostersIdPageProps) {

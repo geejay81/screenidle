@@ -21,8 +21,14 @@ export async function generateMetadata({ params }: HangmanIdPageProps): Promise<
 export async function generateStaticParams() {
 
     const latestMovieBlankBusterMovieId = await getCurrentMovieHangmanPuzzleNumber();
-    return Array.from({ length: latestMovieBlankBusterMovieId - 1 }, (_, i) => i + 1)
-        .map((id: number) => { gameId: id.toString() });
+
+    const result = [];
+
+    for (let i = 1; i < latestMovieBlankBusterMovieId; i++) {
+        result.push({ gameId: i.toString() });
+    }
+
+    return result;
 }
 
 export default async function BlankBusterIdPage({ params }: HangmanIdPageProps) {
