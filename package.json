@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/edge-functions": "^2.11.0",
     "downshift": "^9.0.6",
     "next": "14.2.3",
     "next-sanity": "^9.3.10",

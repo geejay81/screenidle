@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@netlify/edge-functions':
+        specifier: ^2.11.0
+        version: 2.11.0
       downshift:
         specifier: ^9.0.6
         version: 9.0.6(react@18.3.1)
@@ -1221,6 +1224,9 @@ packages:
 
   '@juggle/resize-observer@3.4.0':
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+
+  '@netlify/edge-functions@2.11.0':
+    resolution: {integrity: sha512-DZrDHdPX44Cj7T9geKdiIwHB6OScL7QFL10voC8TApgEwY/NhKfABBGF2cbUIfbAh3IAMBeikelT8PU0MqYnyg==}
 
   '@next/env@14.2.3':
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
@@ -5791,6 +5797,8 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.4.15
 
   '@juggle/resize-observer@3.4.0': {}
+
+  '@netlify/edge-functions@2.11.0': {}
 
   '@next/env@14.2.3': {}
 
