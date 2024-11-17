@@ -9,6 +9,8 @@ type HangmanIdPageProps = {
     params: { gameId: number }
 }
 
+export const revalidate = 86400;
+
 export async function generateMetadata({ params }: HangmanIdPageProps): Promise<Metadata> {
 
     const title = `Movie title blank buster, game #${params.gameId}`;

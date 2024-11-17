@@ -10,6 +10,8 @@ type PostersIdPageProps = {
     params: { gameId: number }
 }
 
+export const revalidate = 86400;
+
 export async function generateMetadata({ params }: PostersIdPageProps): Promise<Metadata> {
 
   const title = `Guess the movie poster, game #${params.gameId}`;

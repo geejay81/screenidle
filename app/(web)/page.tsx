@@ -3,6 +3,8 @@ import Link from "next/link";
 import { FaQuoteLeft, FaUnderline } from "react-icons/fa";
 import { FaClapperboard, FaPlay } from "react-icons/fa6";
 
+export const revalidate = 86400;
+
 export default async function Home() {
 
   return (

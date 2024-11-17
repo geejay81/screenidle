@@ -2,6 +2,8 @@ import FriendPromo from "@/components/page/FriendPromo";
 import Header from "@/components/page/Header";
 import { Friend } from "@/types/Friend";
 
+export const revalidate = 86400;
+
 export default function GamesPage() {
 
     const friends: Friend[] = [

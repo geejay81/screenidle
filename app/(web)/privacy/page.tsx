@@ -6,6 +6,8 @@ const title = "Privacy";
 const description = "The ScreenIdley privacy policy";
 const pageUrl = `${process.env.BASE_URL}privacy`;
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default function PrivacyPolicyPage() {

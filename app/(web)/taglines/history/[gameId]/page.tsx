@@ -10,6 +10,8 @@ type TaglinesIdPageProps = {
     params: { gameId: number }
 }
 
+export const revalidate = 86400;
+
 export async function generateMetadata({ params }: TaglinesIdPageProps): Promise<Metadata> {
 
     const title = `Guess the movie tagline, game #${params.gameId}`;
