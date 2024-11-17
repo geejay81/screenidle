@@ -13,6 +13,7 @@ export default async (request: Request) => {
   agents.forEach((agent: string) => {
     if (ua?.toLowerCase().includes(agent.toLowerCase())) {
       isBot = true;
+      console.log('Bot detected: ' + agent);
       return;
     }
   })
