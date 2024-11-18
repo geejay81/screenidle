@@ -52,7 +52,7 @@ export default function Navbar() {
         <nav className="nav-section">
             <div className="nav-container">
                 <div className={`nav-brand ${headings.className}`}>
-                    <Link href="/" className="space-x-2">
+                    <Link prefetch={false} href="/" className="space-x-2">
                         <FaClapperboard className="inline" /><span>ScreenIdle</span>
                     </Link>
                 </div>
@@ -76,7 +76,9 @@ export default function Navbar() {
                                         <Link 
                                             href={link.url} 
                                             title={link.title}
-                                            onClick={() => setIsOpen(false)} className="space-x-2">
+                                            onClick={() => setIsOpen(false)} 
+                                            className="space-x-2"
+                                            prefetch={false}>
                                             {link.icon}
                                             <span>{link.title}</span>
                                         </Link>

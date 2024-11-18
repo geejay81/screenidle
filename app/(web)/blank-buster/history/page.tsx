@@ -30,6 +30,7 @@ export default async function BlankBusterHistoryPage() {
                             <Link 
                                 href={`/blank-buster/history/${game}`}
                                 className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
+                                prefetch={false}
                                 >{game}</Link></li>
                     ))}
                     </ul>

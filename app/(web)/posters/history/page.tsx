@@ -30,6 +30,7 @@ export default async function PosterHistoryPage() {
                             <Link 
                                 href={`/posters/history/${movie.gameId}`}
                                 className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
+                                prefetch={false}
                                 >{movie.gameId}</Link></li>
                     ))}
                     </ul>

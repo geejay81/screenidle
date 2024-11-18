@@ -30,6 +30,7 @@ export default async function TaglineHistoryPage() {
                             <Link 
                                 href={`/taglines/history/${game}`}
                                 className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
+                                prefetch={false}
                                 >{game}</Link></li>
                     ))}
                     </ul>

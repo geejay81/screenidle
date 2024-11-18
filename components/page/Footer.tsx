@@ -20,9 +20,9 @@ export default function Footer() {
                         {link.icon}<span className="sr-only">Visit ScreenIdle on {link.title}</span>
                     </Link>
                 ))}
-                <a href="/privacy" className="p-4" title="Privacy">
+                <Link href="/privacy" prefetch={false} className="p-4" title="Privacy">
                     Privacy
-                </a>
+                </Link>
             </div>
         </footer>
     )

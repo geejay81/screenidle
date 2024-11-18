@@ -15,15 +15,15 @@ export default async function Home() {
           <span>ScreenIdle</span>
         </h1>
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <Link href="/posters" className={`home-cta ${headings.className} m-4`}>
+          <Link prefetch={false} href="/posters" className={`home-cta ${headings.className} m-4`}>
             <FaPlay className="inline" />
             <span>Play Today&apos;s Movie Poster Game</span>
           </Link>
-          <Link href="/taglines" className={`home-cta ${headings.className} m-4`}>
+          <Link prefetch={false} href="/taglines" className={`home-cta ${headings.className} m-4`}>
             <FaQuoteLeft className="inline" />
             <span>Play Today&apos;s Movie Tagline Game</span>
           </Link>
-          <Link href="/blank-buster" className={`home-cta ${headings.className} m-4`}>
+          <Link prefetch={false} href="/blank-buster" className={`home-cta ${headings.className} m-4`}>
             <FaUnderline className="inline" />
             <span>Play Today&apos;s Movie Blank Buster</span>
           </Link>
