@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaBluesky, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
 
@@ -8,6 +8,11 @@ export default function Footer() {
             "title": "X",
             "url": "https://x.com/screenidlegame",
             "icon": <FaXTwitter />
+        },
+        {
+            "title": "X",
+            "url": "https://bsky.app/profile/screenidle.app",
+            "icon": <FaBluesky />
         }
     ]
     
