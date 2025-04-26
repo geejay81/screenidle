@@ -1,5 +1,5 @@
 import Header from "@/components/page/Header";
-import { getHistoricalMovies } from "@/data/movies"
+import { getHistoricalPosterMovies } from "@/data/movies"
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
@@ -13,7 +13,7 @@ export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function PosterHistoryPage() {
 
-    const movies = await getHistoricalMovies();
+    const movies = await getHistoricalPosterMovies();
     const showHistory = movies && movies.length > 0;
 
     return (

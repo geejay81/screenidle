@@ -1,6 +1,7 @@
 import Header from "@/components/page/Header";
-import { getCurrentTaglineMovie, getCurrentTaglinePuzzleNumber } from "@/data/movies"
+import { getCurrentTaglineMovie, getCurrentTaglinePuzzleNumber, getHistoricalTaglinesMovies } from "@/data/movies"
 import getPageMetaData from "@/lib/getPageMetaData";
+import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,26 +13,25 @@ export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function TaglineHistoryPage() {
 
-    const latestTaglineMovieId = await getCurrentTaglinePuzzleNumber();
-    const games = Array.from({ length: latestTaglineMovieId - 1 }, (_, i) => i + 1);
-    const showHistory = latestTaglineMovieId && latestTaglineMovieId > 1;
+    const movies = await getHistoricalTaglinesMovies();
+    const showHistory = movies && movies.length > 0;
 
     return (
         <>
-            <Header title={'Previous movie poster puzzles'} />
+            <Header title={'Previous movie tagline puzzles'} />
             <main className="grow">
                 <div className="max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8">
                 {showHistory
                 ?
                     <ul className="list-none m-0">
-                    {games.map((game: number) => (
-                        <li key={game} 
+                    {movies.map((game: Movie) => (
+                        <li key={game.gameId} 
                             className="mr-4 my-2 inline-flex">
                             <Link 
-                                href={`/taglines/history/${game}`}
+                                href={`/taglines/history/${game.gameId}`}
                                 className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
                                 prefetch={false}
-                                >{game}</Link></li>
+                                >{game.gameId}</Link></li>
                     ))}
                     </ul>
                 :

@@ -1,7 +1,8 @@
 import HangmanPuzzle from "@/components/client-apps/HangmanPuzzle";
 import Header from "@/components/page/Header";
-import { getCurrentMovieHangmanPuzzleNumber, getMovieHangmanMovie } from "@/data/movies";
+import { getCurrentMovieHangmanPuzzleNumber, getHistoricalHangmanMovies, getMovieHangmanMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
+import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -22,15 +23,11 @@ export async function generateMetadata({ params }: HangmanIdPageProps): Promise<
 
 export async function generateStaticParams() {
 
-    const latestMovieBlankBusterMovieId = await getCurrentMovieHangmanPuzzleNumber();
-
-    const result = [];
-
-    for (let i = 1; i < latestMovieBlankBusterMovieId; i++) {
-        result.push({ gameId: i.toString() });
-    }
-
-    return result;
+    const movies = await getHistoricalHangmanMovies();
+    
+      const result = movies.map((game: Movie) => ({ gameId: game.gameId.toString() }));
+    
+      return result;
 }
 
 export default async function BlankBusterIdPage({ params }: HangmanIdPageProps) {

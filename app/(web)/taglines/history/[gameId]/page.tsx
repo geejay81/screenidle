@@ -1,6 +1,6 @@
 import TaglinePuzzle from "@/components/client-apps/TaglinePuzzle";
 import Header from "@/components/page/Header";
-import { getCurrentTaglineMovie, getTaglineMovie } from "@/data/movies";
+import { getCurrentTaglineMovie, getHistoricalTaglinesMovies, getTaglineMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Movie } from "@/types/Movie";
 import { Metadata } from "next";
@@ -23,15 +23,11 @@ export async function generateMetadata({ params }: TaglinesIdPageProps): Promise
 
 export async function generateStaticParams() {
 
-    const latestMovieTaglineMovieId: Movie = await getCurrentTaglineMovie();
+  const movies = await getHistoricalTaglinesMovies();
 
-    const result = [];
+  const result = movies.map((game: Movie) => ({ gameId: game.gameId.toString() }));
 
-    for (let i = 1; i < latestMovieTaglineMovieId.gameId; i++) {
-        result.push({ gameId: i.toString() });
-    }
-
-    return result;
+  return result;
 }
 
 export default async function TaglinesIdPage({ params }: TaglinesIdPageProps) {

@@ -1,5 +1,5 @@
 import Header from "@/components/page/Header";
-import { getCurrentMovieHangmanPuzzleNumber } from "@/data/movies"
+import { getHistoricalHangmanMovies } from "@/data/movies"
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -12,9 +12,8 @@ export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function BlankBusterHistoryPage() {
 
-    const latestMovieBlankBusterMovieId = await getCurrentMovieHangmanPuzzleNumber();
-    const games = Array.from({ length: latestMovieBlankBusterMovieId - 1 }, (_, i) => i + 1);
-    const showHistory = latestMovieBlankBusterMovieId && latestMovieBlankBusterMovieId > 1;
+    const movies = await getHistoricalHangmanMovies();
+    const showHistory = movies && movies.length > 0;
 
     return (
         <>
@@ -24,14 +23,14 @@ export default async function BlankBusterHistoryPage() {
                 {showHistory
                 ?
                     <ul className="list-none m-0">
-                    {games.map((game: number) => (
-                        <li key={game} 
+                    {movies.map((game: any) => (
+                        <li key={game.gameId} 
                             className="mr-4 my-2 inline-flex">
                             <Link 
-                                href={`/blank-buster/history/${game}`}
+                                href={`/blank-buster/history/${game.gameId}`}
                                 className="bg-screenidle-warning text-screenidle-link px-5 py-4 rounded-lg inline-block"
                                 prefetch={false}
-                                >{game}</Link></li>
+                                >{game.gameId}</Link></li>
                     ))}
                     </ul>
                 :

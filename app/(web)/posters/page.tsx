@@ -1,6 +1,6 @@
 import PosterPuzzle from "@/components/client-apps/PosterPuzzle";
 import Header from "@/components/page/Header";
-import { getCurrentMovie } from "@/data/movies";
+import { getCurrentPostersMovie } from "@/data/movies";
 import getPageMetaData from "@/lib/getPageMetaData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -12,7 +12,7 @@ const pageUrl = `${process.env.BASE_URL}posters`;
 export const metadata: Metadata = getPageMetaData(title, description, pageUrl);
 
 export default async function PostersPage() {
-    const movie = await getCurrentMovie();
+    const movie = await getCurrentPostersMovie();
 
     if (!movie) return notFound();
   

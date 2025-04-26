@@ -2,10 +2,32 @@ import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client-config";
 import gameConfig from "./config/game-config";
 import { Movie } from "@/types/Movie";
-import taglines from '@/data/taglines.json';
-import { hangmanMoviesIds } from './hangman-movies';
 
-const currentPuzzleId = () => {    
+// #region Caching
+
+const filteredResponseQueryOptions = {
+    next: { revalidate: Number(process.env.REVALIDATE_CACHE_SECONDS) }
+}
+
+// #endregion
+
+// #region Decade Game Periods
+
+const getGamePeriod = () => {
+    switch (gameConfig.gameIdentifier) {
+        case "1970s": return [1970,1979];
+        case "1980s": return [1980,1989];
+        case "1990s": return [1990,1999];
+        case "2000s": return [2000,2009];
+        default: return [1900,2050];
+    }
+}
+
+// #endregion
+
+// #region Get Current Puzzle Id
+
+const currentPostersPuzzleId = () => {    
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
     const startDate = new Date(process.env.START_DATE ?? '2022-05-22');
     const today = new Date();
@@ -26,24 +48,24 @@ const currentMovieHangmanPuzzleId = () => {
     return Math.floor((today.getTime() - startDate.getTime()) / _MS_PER_DAY) + 1;
 }
 
-const getGamePeriod = () => {
-    switch (gameConfig.gameIdentifier) {
-        case "1970s": return [1970,1979];
-        case "1980s": return [1980,1989];
-        case "1990s": return [1990,1999];
-        case "2000s": return [2000,2009];
-        default: return [1900,2050];
-    }
+export async function getCurrentTaglinePuzzleNumber() {
+
+    return currentTaglinePuzzleId();
 }
 
-const filteredResponseQueryOptions = {
-    next: { revalidate: Number(process.env.REVALIDATE_CACHE_SECONDS) }
+export async function getCurrentMovieHangmanPuzzleNumber() {
+
+    return currentMovieHangmanPuzzleId();
 }
 
-export async function getCurrentMovie() {
-    const currentPuzzleDate = currentPuzzleId();
+// #endregion
 
-    return await getMovie(currentPuzzleDate);
+// #region Get Current Movie Game
+
+export async function getCurrentPostersMovie() {
+    const currentPuzzleDate = currentPostersPuzzleId();
+
+    return await getPostersMovie(currentPuzzleDate);
 }
 
 export async function getCurrentTaglineMovie() {
@@ -58,13 +80,15 @@ export async function getCurrentMovieHangmanMovie() {
     return await getMovieHangmanMovie(currentPuzzleDate);
 }
 
-export async function getMovie(gameId: number) {
+// #endregion
 
-    const currentPuzzleDate = currentPuzzleId();
+// #region Get Individual Movies Functions
 
-    if (gameId > currentPuzzleDate) return null;
+async function getMovieOfType(gameId: number, currentGameId: number, gameType: string) {
 
-    const alMovies = await getAllMovies();
+    if (gameId > currentGameId) return null;
+
+    const alMovies = await getAllMoviesOfType(gameType);
 
     const selectedMovies =  alMovies.filter((movie: Movie) => movie.gameId == gameId);
 
@@ -73,63 +97,82 @@ export async function getMovie(gameId: number) {
     return selectedMovies[0];
 }
 
+export async function getPostersMovie(gameId: number) {
+
+    const currentPuzzleDate = currentPostersPuzzleId();
+
+    return await getMovieOfType(gameId, currentPuzzleDate, "posters");
+}
+
 export async function getTaglineMovie(gameId: number) {
 
     const currentPuzzleDate = currentTaglinePuzzleId();
 
-    if (gameId > currentPuzzleDate) return null;
-
-    const _id = taglines[gameId - 1]._id;
-
-    const alMovies = await getAllMovies();
-
-    const selectedMovies =  alMovies.filter((movie: Movie) => movie._id == _id);
-
-    if (selectedMovies === null || selectedMovies.length === 0) return null;
-
-    var result = {...selectedMovies[0], gameId}
-
-    return result;
+    return await getMovieOfType(gameId, currentPuzzleDate, "taglines");
 }
 
 export async function getMovieHangmanMovie(gameId: number) {
 
     const currentPuzzleDate = currentMovieHangmanPuzzleId();
 
-    if (gameId > currentPuzzleDate) return null;
-
-    const _id = hangmanMoviesIds[gameId - 1];
-
-    const alMovies = await getAllMovies();
-
-    const selectedMovies =  alMovies.filter((movie: Movie) => movie._id == _id);
-
-    if (selectedMovies === null || selectedMovies.length === 0) return null;
-
-    var result = {...selectedMovies[0], gameId}
-
-    return result;
+    return await getMovieOfType(gameId, currentPuzzleDate, "blankbuster");
 }
 
-export async function getCurrentTaglinePuzzleNumber() {
+// #endregion
 
-    return currentTaglinePuzzleId();
-}
+// #region Get Historical Movies
 
-export async function getCurrentMovieHangmanPuzzleNumber() {
+async function getHistoricalMovies(gameType: string, getCurrentGameFn: () => number) {
 
-    return currentMovieHangmanPuzzleId();
-}
+    const currentGameId = getCurrentGameFn();
 
-export async function getHistoricalMovies() {
-    
-    const currentPuzzleDate = currentPuzzleId();
-    const allMovies = await getAllMovies();
+    const allMovies = await getAllMoviesOfType(gameType);
 
     return allMovies
         .filter((movie: Movie) => (
-            movie.gameId !== null && movie.gameId < currentPuzzleDate))
+            movie.gameId !== null && movie.gameId < currentGameId))
         .sort((a: Movie, b: Movie) => a.gameId - b.gameId);
+} 
+
+export async function getHistoricalPosterMovies() {
+
+    return getHistoricalMovies("posters", currentPostersPuzzleId);
+}
+
+export async function getHistoricalTaglinesMovies() {
+    
+    return getHistoricalMovies("taglines", currentTaglinePuzzleId);
+}
+
+export async function getHistoricalHangmanMovies() {
+    
+    return getHistoricalMovies("blankbuster", currentMovieHangmanPuzzleId);
+}
+
+// #endregion
+
+// #region All Movie Lists
+
+export async function getAllMoviesOfType(gameType: string) {
+    const allMovies = await getAllMovies();
+
+    if (!["posters", "taglines", "blankbuster"].includes(gameType)) {
+        return [];
+    }
+
+    return allMovies
+        .flatMap((record: any) =>
+        (record.gameAppearances || []).map((game: any) => ({
+            gameType: game.gameType,
+            _id: record._id,
+            gameId: game.gameNumber,
+            imdbId: record.imdbId,
+            poster: record.poster,
+            title: record.title,
+            year: record.year,
+            tmdbId: record.tmdbId,
+            tagline: record.tagline
+        }))).filter((game: any) => game.gameType === gameType);
 }
 
 export async function getAllMovies() {
@@ -145,9 +188,12 @@ export async function getAllMovies() {
             imdbId,
             tmdbId,
             "poster": poster.asset->url,
-            tagline
+            tagline,
+            gameAppearances
         } | order(title)`,
         {},
         filteredResponseQueryOptions
     );
 }
+
+// #endregion
