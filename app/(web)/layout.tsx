@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/page/Navbar";
-import Footer from "@/components/page/Footer";
+import Navbar from "@/components/page/navbar/Navbar";
+import Footer from "@/components/page/footer/Footer";
 import getPageMetaData from "@/lib/getPageMetaData";
 import Script from "next/script";
 import Raptive from "@/components/page/Raptive";
