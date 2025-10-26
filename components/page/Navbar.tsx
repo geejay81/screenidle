@@ -64,8 +64,8 @@ export default function Navbar() {
                     </button>
                 </div>
                 {isOpen && (
-                    <div className="absolute top-0 right-0 w-full md:w-96 h-screen" role="navigation">
-                        <div className="bg-screenidle-warning h-full p-6 text-slate-800">
+                    <div className="absolute top-0 right-0 w-full md:w-96 h-screen z-50" role="navigation">
+                        <div className="bg-screenidle-success h-full p-6 text-slate-800">
                             <a href="#" onClick={() => setIsOpen(false)} 
                                 className="text-3xl float-right">&times;</a>
                             <ul>
