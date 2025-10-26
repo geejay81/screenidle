@@ -10,7 +10,7 @@ export default function Footer() {
             "icon": <FaXTwitter />
         },
         {
-            "title": "X",
+            "title": "Bluesky",
             "url": "https://bsky.app/profile/screenidle.app",
             "icon": <FaBluesky />
         }
