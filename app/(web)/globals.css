@@ -89,7 +89,22 @@ body {
 }
 
 .home-header {
-    @apply text-4xl font-bold md:text-8xl space-x-1 border-2 border-white p-8 rounded-lg;
+    @apply relative text-4xl font-bold md:text-8xl space-x-1 border-0 p-8 rounded-lg;
+
+    &::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px; /* ✅ thickness of border */
+  border-radius: inherit;
+  background: linear-gradient(to right, #98FB98, #8b5cf6, #FF69B4);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
 }
 
 .home-cta {
