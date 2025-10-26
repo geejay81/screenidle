@@ -13,7 +13,18 @@ body {
 /* Navbar */
 
 .nav-section {
-    @apply border-b border-slate-400;
+    /* @apply border-b border-slate-400; */
+    @apply relative border-b-0;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(to right, #98FB98, #8b5cf6, #FF69B4);
+    }
 }
 
 .nav-container {
@@ -34,9 +45,7 @@ body {
 
 /* Header */
 
-.header-section {
-
-}
+.header-section {}
 
 .header-container {
     @apply max-w-md p-4 mx-auto md:max-w-screen-lg md:px-8;
@@ -49,7 +58,20 @@ body {
 /* Footer */
 
 .footer-section {
-    @apply border-t border-slate-400;
+    @apply relative border-t-0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 100vw;
+        /* Full viewport width */
+        height: 3px;
+        background: linear-gradient(to right, #98FB98, #8b5cf6, #FF69B4);
+        transform: translateX(-50%);
+        /* Center the 100vw element */
+    }
 }
 
 .footer-container {
@@ -66,7 +88,7 @@ body {
     @apply container mx-auto max-w-screen-lg p-6 py-20 space-y-8 md:space-y-16 flex flex-col items-center justify-evenly;
 }
 
-.home-header{
+.home-header {
     @apply text-4xl font-bold md:text-8xl space-x-1 border-2 border-white p-8 rounded-lg;
 }
 
@@ -87,48 +109,15 @@ body {
 }
 
 .keyboard-row {
-    @apply 
-        flex 
-        justify-center 
-        w-full 
-        mt-0
-        mb-2
-        mx-auto
-        touch-manipulation
+    @apply flex justify-center w-full mt-0 mb-2 mx-auto touch-manipulation
 }
 
 .keyboard-row button {
-    @apply
-        font-bold
-        h-12
-        cursor-pointer
-        bg-screenidle-warning
-        text-screenidle-link
-        flex-grow
-        uppercase
-        mr-1
-        rounded-md
-        select-none
-        disabled:bg-slate-300
-        text-sm
-        xs:text-base
-        md:text-lg
+    @apply font-bold h-12 cursor-pointer bg-screenidle-warning text-screenidle-link flex-grow uppercase mr-1 rounded-md select-none disabled:bg-slate-300 text-sm xs:text-base md:text-lg
 }
 
 .keyboard-spacer {
-    @apply
-        font-bold
-        h-12
-        cursor-pointer
-        flex-grow
-        uppercase
-        mr-1
-        rounded-md
-        select-none
-        disabled:bg-slate-300
-        text-sm
-        xs:text-base
-        md:text-lg
+    @apply font-bold h-12 cursor-pointer flex-grow uppercase mr-1 rounded-md select-none disabled:bg-slate-300 text-sm xs:text-base md:text-lg
 }
 
 .privacy {
