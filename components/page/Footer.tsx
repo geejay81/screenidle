@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaBluesky, FaXTwitter } from "react-icons/fa6";
+import { FaBluesky, FaReddit, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
 
@@ -13,6 +13,11 @@ export default function Footer() {
             "title": "Bluesky",
             "url": "https://bsky.app/profile/screenidle.app",
             "icon": <FaBluesky />
+        },
+        {
+            "title": "Reddit",
+            "url": "https://reddit.com/u/ScreenIdleGame",
+            "icon": <FaReddit />
         }
     ]
     
@@ -21,7 +26,8 @@ export default function Footer() {
             <div className="footer-container">
                 {footerLinks.map((link,index) => (
                     <Link key={index} href={link.url} title={`Visit ScreenIdle on ${link.title}`} className="p-4"
-                        prefetch={false}>
+                        prefetch={false}
+                        target="_blank">
                         {link.icon}<span className="sr-only">Visit ScreenIdle on {link.title}</span>
                     </Link>
                 ))}

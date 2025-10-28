@@ -20,6 +20,12 @@ export default function GamesPage() {
             linkUrl: "https://90s.popidle.app"
         },
         {
+            title: "PopIdle00s", 
+            description: "Guess the 00's album from the pixelated artwork.", 
+            imageUrl: "/friends/00s.png", 
+            linkUrl: "https://00s.popidle.app"
+        },
+        {
             title: "PopIdle", 
             description: "The original PopIdle game. Guess the album from the pixelated artwork.", 
             imageUrl: "/friends/PopIdle.jpg", 
