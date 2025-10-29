@@ -162,3 +162,20 @@ body {
 .privacy ul {
     @apply space-y-4 list-disc list-inside;
 }
+
+.previous-answers {
+
+    @apply mt-2;
+
+    & > h2 {
+        @apply py-2 font-bold text-lg;
+    }
+
+    .previous-answers-list {
+        @apply space-y-2;
+
+        & > li {
+            @apply flex items-center justify-between p-3 bg-[color:rgb(200,100,255,0.125)] border-0 rounded-lg shadow-sm;
+        }
+    }
+}
