@@ -1,7 +1,8 @@
+import Logo from "@/components/ui/Logo";
 import { headings, logo } from "@/ui/fonts";
 import Link from "next/link";
 import { FaQuoteLeft, FaUnderline } from "react-icons/fa";
-import { FaClapperboard, FaPlay } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa6";
 
 export const revalidate = 86400;
 
@@ -11,8 +12,7 @@ export default async function Home() {
     <main className="home-section">
       <div className="home-container">
         <h1 className={`home-header ${logo.className} `}>
-          <FaClapperboard className="inline" />
-          <span>ScreenIdle</span>
+          <Logo />
         </h1>
         <div className="flex flex-col md:flex-row justify-between items-center">
           <Link prefetch={false} href="/posters" className={`home-cta ${headings.className} m-4`}>

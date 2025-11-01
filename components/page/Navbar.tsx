@@ -4,7 +4,7 @@ import { headings } from "@/ui/fonts";
 import Link from "next/link";
 import { useState } from "react";
 import { FaCalendar, FaFilm, FaGamepad, FaQuoteLeft, FaUnderline } from "react-icons/fa";
-import { FaClapperboard } from "react-icons/fa6";
+import Logo from "../ui/Logo";
 
 const navLinks = [
     {
@@ -53,7 +53,7 @@ export default function Navbar() {
             <div className="nav-container">
                 <div className={`nav-brand ${headings.className}`}>
                     <Link prefetch={false} href="/" className="space-x-2">
-                        <FaClapperboard className="inline" /><span>ScreenIdle</span>
+                        <Logo />
                     </Link>
                 </div>
                 <div className="nav-links">

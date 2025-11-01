@@ -44,6 +44,17 @@ body {
     @apply inline-flex flex-row items-center space-x-2;
 }
 
+.logo {
+    @apply flex flex-row items-center space-x-2;
+    /* background-color: #fff;
+    background: linear-gradient(to right, #98FB98,#FF69B4);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent; */
+}
+
 /* Header */
 
 .header-section {}
