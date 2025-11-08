@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { FaBluesky, FaReddit, FaXTwitter } from "react-icons/fa6";
+import { FaBluesky, FaFacebook, FaReddit, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
 
     const footerLinks = [
+        {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/screenidlegame",
+            "icon": <FaFacebook />
+        },
         {
             "title": "X",
             "url": "https://x.com/screenidlegame",
